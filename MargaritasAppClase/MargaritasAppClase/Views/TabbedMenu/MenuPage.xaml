@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MargaritasAppClase.Views.TabbedMenu.MenuPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <StackLayout Padding="0" Margin="0, 0, 0, 0" VerticalOptions="FillAndExpand">
+                    <Frame BackgroundColor="#fe5ca6">
+                        <StackLayout>
+                            <Image Source="flowericon_sinfondo.png" HeightRequest="50" HorizontalOptions="CenterAndExpand" Margin="0,-7,0,5"/>
+                            <Frame HeightRequest="50" Padding="20,5,20,5" CornerRadius="10">
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame CornerRadius="50" HeightRequest="0" WidthRequest="40" Padding="0" Margin="-12,0,-5,0">
+                                        <Label Text="&#xf002;"
+                                               FontFamily="{StaticResource FontAwesomeSolid}"
+                                               FontSize="20"
+                                               HorizontalOptions="CenterAndExpand"
+                                               VerticalOptions="CenterAndExpand"/>
+                                    </Frame>
+                                    <Entry x:Name="inputbuscarproductos_mainpage"  
+                                           Placeholder="Buscar"
+                                           TextColor="Black"
+                                           PlaceholderColor="Gray"
+                                           HorizontalOptions="FillAndExpand"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+
+                    <ListView>
+                        
+                    </ListView>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
