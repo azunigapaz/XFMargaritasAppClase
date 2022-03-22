@@ -16,5 +16,10 @@ namespace MargaritasAppClase.Views.TabbedMenu
         {
             InitializeComponent();
         }
+
+        private void btnagregarcarrito_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

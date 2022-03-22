@@ -28,9 +28,41 @@
                         </StackLayout>
                     </Frame>
 
-                    <ListView>
-                        
+                    <ListView x:Name="listview_mainproductos" 
+                              SeparatorVisibility="Default"
+                              SeparatorColor="LightGray"
+                              HasUnevenRows="True"
+                              HorizontalOptions="StartAndExpand" 
+                              VerticalOptions="FillAndExpand">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout MinimumHeightRequest="120"
+                                                 Padding="10" 
+                                                 Orientation="Horizontal" 
+                                                 VerticalOptions="FillAndExpand">
+                                        <Image Source="{Binding Foto}" WidthRequest="100" HeightRequest="70"/>
+                                        <StackLayout Orientation="Vertical" Padding="2" VerticalOptions="Center">
+                                            <Label Text="{Binding Id}" IsVisible="False" FontSize="20" Margin="2" TextColor="Black" FontAttributes="Bold"/>
+                                            <Label Text="{Binding Descripcion}" FontSize="20" Margin="2" TextColor="Black" FontAttributes="Bold"/>
+                                            <Label Text="{Binding Precio}" FontSize="14" Margin="2" TextColor="Black" />
+                                            <Label Text="{Binding Cantidad}" FontSize="14" Margin="2" TextColor="Black" />
+                                            
+                                            <Button x:Name="btnagregarcarrito" 
+                                                    Text="Agregar al Carrito" 
+                                                    FontSize="15"
+                                                    TextColor="#FFF"
+                                                    FontAttributes="Bold"
+                                                    BackgroundColor="#FE5CA6"
+                                                    CornerRadius="10"    
+                                                    Clicked="btnagregarcarrito_Clicked" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
+                    
                 </StackLayout>
             </Grid>
         </ScrollView>
