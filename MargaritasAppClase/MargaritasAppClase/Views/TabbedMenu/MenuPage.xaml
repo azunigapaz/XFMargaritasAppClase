@@ -28,6 +28,14 @@
                         </StackLayout>
                     </Frame>
 
+                    <AbsoluteLayout  IsVisible="false" Padding="12"
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" x:Name="sl" HorizontalOptions="Center">
+
+                        <ActivityIndicator IsRunning="false" x:Name="spinner" VerticalOptions="Center"
+                           HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"/>
+                    </AbsoluteLayout>
+
                     <ListView x:Name="listview_mainproductos" 
                               SeparatorVisibility="Default"
                               SeparatorColor="LightGray"
@@ -41,7 +49,7 @@
                                                  Padding="10" 
                                                  Orientation="Horizontal" 
                                                  VerticalOptions="FillAndExpand">
-                                        <Image Source="{Binding Foto}" WidthRequest="100" HeightRequest="70"/>
+                                        <Image Source="{Binding fotografia}" WidthRequest="100" HeightRequest="70"/>
                                         <StackLayout Orientation="Vertical" Padding="2" VerticalOptions="Center">
                                             <Label Text="{Binding Id}" IsVisible="False" FontSize="20" Margin="2" TextColor="Black" FontAttributes="Bold"/>
                                             <Label Text="{Binding Descripcion}" FontSize="20" Margin="2" TextColor="Black" FontAttributes="Bold"/>
