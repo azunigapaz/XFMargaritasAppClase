@@ -7,6 +7,8 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Plugin.CurrentActivity;
+using Xamarin.Essentials;
+using Android.Gms.Common;
 
 namespace MargaritasAppClase.Droid
 {
@@ -19,6 +21,7 @@ namespace MargaritasAppClase.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+            IsPlayServicesAvailable();
 
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
@@ -33,5 +36,14 @@ namespace MargaritasAppClase.Droid
             Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+         public void IsPlayServicesAvailable()
+        {
+            int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+            bool isGooglePlayServce = resultCode != ConnectionResult.Success;
+            Preferences.Set("isGooglePlayServce", isGooglePlayServce);
+
+        }
+
     }
 }
