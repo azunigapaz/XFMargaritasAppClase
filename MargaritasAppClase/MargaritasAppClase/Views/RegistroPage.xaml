@@ -12,11 +12,19 @@
                         <Grid HeightRequest="150" WidthRequest="150" HorizontalOptions="Center">
                             <Ellipse Stroke="White" StrokeThickness="2" Aspect="Fill" />
                             <controls:CircleImage x:Name="registroimg" HeightRequest="150" WidthRequest="150" HorizontalOptions="Center" />
+                            
                         </Grid>
                     </Frame>
 
                     <StackLayout>
                         <StackLayout HorizontalOptions="CenterAndExpand">
+                            <Button Text="Tomar Foto" 
+                                    TextColor="White"
+                                    BackgroundColor="#fe5ca6" 
+                                    FontAttributes="Bold"
+                                    CornerRadius="25"
+                                    Margin="25, 15, 25, 0"                                     
+                                    x:Name="btntomarphoto" Clicked="btntomarphoto_Clicked"/>
                             <Label Text="REGISTRAR USUARIO" TextColor="Black" FontSize="Medium" FontAttributes="Bold" Margin=" 0, 25, 0, 0" />
                         </StackLayout>
 
