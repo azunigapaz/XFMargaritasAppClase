@@ -10,7 +10,8 @@ namespace MargaritasAppClase
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Views.TabbedMenu.MainTabbedPage());
+            //MainPage = new NavigationPage(new Views.TabbedMenu.MainTabbedPage());
+            MainPage = new NavigationPage(new Views.RegistroPage());
         }
 
         protected override void OnStart()
