@@ -27,6 +27,17 @@ namespace MargaritasAppClase.Views
             TapForgotPassPage_Tapped();
         }
 
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (Application.Current.Properties.ContainsKey("correo"))
+            {
+                await Navigation.PushAsync(new Views.TabbedMenu.MainTabbedPage());
+            }
+
+        }
+
         private async void btniniciarsesion_Clicked(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(correo_input.Text) && String.IsNullOrEmpty(password_input.Text))
