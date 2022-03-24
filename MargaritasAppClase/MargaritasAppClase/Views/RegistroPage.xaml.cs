@@ -119,6 +119,7 @@ namespace MargaritasAppClase.Views
                         apellidoregistro_input.Text = "";
                         correoregistro_input.Text = "";
                         telefonoregistro_input.Text = "";
+                        password_input.Text = "";
                         imageToSave = null;
                         registroimg.Source = null;
                         nombreregistro_input.Focus();
