@@ -10,19 +10,19 @@ using Xamarin.Forms.Xaml;
 namespace MargaritasAppClase.Views.TabbedMenu
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PerfilPage : ContentPage
+    public partial class ActualizarPerfilPage : ContentPage
     {
-        public PerfilPage()
+        public ActualizarPerfilPage()
         {
             InitializeComponent();
         }
 
-        private async void btnactualizarperfilpage_Clicked(object sender, EventArgs e)
+        private void btntomarphotoactualizada_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ActualizarPerfilPage());
+
         }
 
-        private void btncerrarsesion_Clicked(object sender, EventArgs e)
+        private void btnguardarcambios_Clicked(object sender, EventArgs e)
         {
 
         }

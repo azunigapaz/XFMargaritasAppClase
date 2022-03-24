@@ -18,7 +18,8 @@ namespace MargaritasAppClase.Views.TabbedMenu
         {
             InitializeComponent();
             On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
-            On<Android>().SetIsSmoothScrollEnabled(true);
+            On<Android>().SetIsSmoothScrollEnabled(true);            
         }
+
     }
 }
