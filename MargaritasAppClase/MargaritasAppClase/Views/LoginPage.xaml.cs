@@ -34,6 +34,9 @@ namespace MargaritasAppClase.Views
             if (Application.Current.Properties.ContainsKey("correo"))
             {
                 await Navigation.PushAsync(new Views.TabbedMenu.MainTabbedPage());
+                Navigation.RemovePage(Navigation.NavigationStack[0]);
+                //int numPage = Navigation.NavigationStack.Count;
+                //await DisplayAlert("Mensaje", numPage.ToString(), "Ok");
             }
 
         }
@@ -80,6 +83,7 @@ namespace MargaritasAppClase.Views
                         await Application.Current.SavePropertiesAsync();
 
                         await Navigation.PushAsync(new Views.TabbedMenu.MainTabbedPage());
+                        Navigation.RemovePage(Navigation.NavigationStack[0]);
                     }
                     else
                     {
