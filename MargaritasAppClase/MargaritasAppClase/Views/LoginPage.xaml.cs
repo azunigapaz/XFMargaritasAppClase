@@ -7,11 +7,19 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using MargaritasAppClase.Models;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Net;
+using Newtonsoft.Json.Linq;
+
+
 namespace MargaritasAppClase.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        string pdCorreo = "", pdPass = "";
         public LoginPage()
         {
             InitializeComponent();
@@ -19,9 +27,64 @@ namespace MargaritasAppClase.Views
             TapForgotPassPage_Tapped();
         }
 
-        private void btniniciarsesion_Clicked(object sender, EventArgs e)
+        private async void btniniciarsesion_Clicked(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(correo_input.Text) && String.IsNullOrEmpty(password_input.Text))
+            {
+                await DisplayAlert("Campo Vacio", "Por favor, Ingrese un correo y una contraseña ", "Ok");
+            }
+            else
+            {
 
+                LoginModel Login = new LoginModel
+                {
+                    authmail = correo_input.Text,
+                    authpass = password_input.Text,
+                };
+
+                Uri RequestUri = new Uri("https://webfacturacesar.000webhostapp.com/Margarita/methods/login/");
+
+                var client = new HttpClient();
+                var json = JsonConvert.SerializeObject(Login);
+                var contentJson = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(RequestUri, contentJson);
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    String jsonx = response.Content.ReadAsStringAsync().Result;
+                    JObject jsons = JObject.Parse(jsonx);
+                    String Mensaje = jsons["success"].ToString();
+
+                    //await DisplayAlert("Success", "Datos guardados correctamente", "Ok");
+
+
+                    if(Mensaje == "true")
+                    {
+
+                        pdCorreo = correo_input.Text;
+                        pdPass = password_input.Text;
+
+                        Application.Current.Properties["correo"] = pdCorreo;
+                        Application.Current.Properties["pass"] = pdPass;
+                        await Application.Current.SavePropertiesAsync();
+
+                        await Navigation.PushAsync(new Views.TabbedMenu.MainTabbedPage());
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error", "El usuario no existe", "Ok");
+                        correo_input.Text = "";
+                        password_input.Text = "";
+                        correo_input.Focus();
+                    }
+
+                    //await Navigation.PopAsync();
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Estamos en mantenimiento", "Ok");
+                }
+            }
         }
 
         private void TapRegistroPage_Tapped() => lbl_registropage.GestureRecognizers.Add(new TapGestureRecognizer()
