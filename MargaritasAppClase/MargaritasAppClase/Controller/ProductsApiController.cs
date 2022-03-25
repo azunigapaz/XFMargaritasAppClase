@@ -15,7 +15,7 @@ namespace MargaritasAppClase.Controller
 {
     public class ProductsApiController
     {
-
+        Object objSitioGlobal = null;
         public async static Task<List<ProductsListModel>> ControllerObtenerListaProductos()
         {
             List<ProductsListModel> listaproductos = new List<ProductsListModel>();
@@ -52,6 +52,24 @@ namespace MargaritasAppClase.Controller
                 }
             }
             return listaproductos;
+        }
+
+        public async static Task<ClientesModel> ControllerGetUser(string correo)
+        {
+            var clientesModel = new ClientesModel();
+
+            using (HttpClient cliente = new HttpClient())
+            {
+                var respuesta = await cliente.GetAsync("https://webfacturacesar.000webhostapp.com/Margarita/methods/cliente/" + correo);
+
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    string contenido = respuesta.Content.ReadAsStringAsync().Result;
+                    clientesModel = JsonConvert.DeserializeObject<ClientesModel>(contenido);
+                }
+            }
+
+            return await Task.FromResult(clientesModel);
         }
 
     }

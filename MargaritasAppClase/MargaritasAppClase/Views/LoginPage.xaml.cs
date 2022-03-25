@@ -19,7 +19,7 @@ namespace MargaritasAppClase.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        string pdCorreo = "", pdPass = "";
+        string pdCorreo = "";
         public LoginPage()
         {
             InitializeComponent();
@@ -75,11 +75,9 @@ namespace MargaritasAppClase.Views
                     if(Mensaje == "true")
                     {
 
-                        pdCorreo = correo_input.Text;
-                        pdPass = password_input.Text;
+                        pdCorreo = correo_input.Text;                        
 
-                        Application.Current.Properties["correo"] = pdCorreo;
-                        Application.Current.Properties["pass"] = pdPass;
+                        Application.Current.Properties["correo"] = pdCorreo;                        
                         await Application.Current.SavePropertiesAsync();
 
                         await Navigation.PushAsync(new Views.TabbedMenu.MainTabbedPage());
