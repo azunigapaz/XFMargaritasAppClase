@@ -40,6 +40,7 @@ namespace MargaritasAppClase.Views
                     Directory = "PhotoApp",
                     Name = DateTime.Now.ToString() + "_Pic.jpg",
                     SaveToAlbum = true,
+                    DefaultCamera = Plugin.Media.Abstractions.CameraDevice.Front,
                     CompressionQuality = 40
                 });
 
