@@ -156,7 +156,7 @@ namespace MargaritasAppClase.Views
                         }
                         catch (Exception ex)
                         {
-                            DisplayAlert("Faild", ex.Message, "OK");
+                            await DisplayAlert("Faild", ex.Message, "OK");
                         }
 
                         nombreregistro_input.Text = "";
