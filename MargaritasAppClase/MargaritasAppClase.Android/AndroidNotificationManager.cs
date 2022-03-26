@@ -12,9 +12,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
 namespace MargaritasAppClase.Droid
 {
-    public class AndroidNotificationManager
+    public class AndroidNotificationManager 
     {
         const string channelId = "default";
         const string channelName = "Default";

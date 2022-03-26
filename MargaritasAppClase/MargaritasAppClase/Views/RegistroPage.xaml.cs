@@ -14,9 +14,9 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net;
 using Newtonsoft.Json.Linq;
+using Plugin.LocalNotification;
 using System.Net.Mail;
 using System.Net.Mime;
-
 namespace MargaritasAppClase.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -79,7 +79,7 @@ namespace MargaritasAppClase.Views
                 {
                     //convertir la imagen a base64
                     string pathBase64Imagen = Convert.ToBase64String(imageToSave);
-
+                    
                     //extraer el path del audio
                     //string audio = AudioPath;
                     //convertir a arreglo de bytes
@@ -111,6 +111,8 @@ namespace MargaritasAppClase.Views
 
                     if (response.StatusCode == HttpStatusCode.OK)
                     {
+
+                        
                         String jsonx = response.Content.ReadAsStringAsync().Result;
 
                         JObject jsons = JObject.Parse(jsonx);
@@ -153,6 +155,19 @@ namespace MargaritasAppClase.Views
                             SmtpServer.Credentials = new System.Net.NetworkCredential("notificadormargaritaapp@gmail.com", "AppMargarita");
 
                             SmtpServer.Send(mail);
+
+                            //envia Push Notificacion
+                            var notificacion = new NotificationRequest
+                            {
+                                BadgeNumber = 1,
+                                Title = "Bienvenido a MargaritaApp",
+                                ReturningData = "Dummy Data",
+                                NotificationId = 1337,
+
+                            };
+
+                            await NotificationCenter.Current.Show(notificacion);
+                            //Finaliza el Push de Notificacion
                         }
                         catch (Exception ex)
                         {
@@ -168,10 +183,8 @@ namespace MargaritasAppClase.Views
                         imageToSave = null;
                         registroimg.Source = null;
                         nombreregistro_input.Focus();
-                        password_input.Text = "";
-                        confirmarpassword_input.Text = "";
-
                     }
+                    
                     else
                     {
                         await DisplayAlert("Error", "Estamos en mantenimiento", "Ok");
