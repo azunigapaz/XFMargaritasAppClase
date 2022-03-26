@@ -11,11 +11,11 @@
                         <Label Text="Actualizar Perfil" TextColor="#FFF" FontSize="20" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" />
                     </StackLayout>
                 </Frame>-->
-
+                <Label x:Name="id" Text="{Binding ID_Cliente}" IsVisible="False"></Label>
                 <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,25,0,0">
                     <Grid HeightRequest="150" WidthRequest="150" HorizontalOptions="Center">
                         <Ellipse Stroke="#f06292" StrokeThickness="2" Aspect="Fill" />
-                        <controls:CircleImage x:Name="imgeditperfil" HeightRequest="150" WidthRequest="150" HorizontalOptions="Center" />
+                        <controls:CircleImage x:Name="imgeditperfil" Source="{Binding fotografia}" HeightRequest="150" WidthRequest="150" HorizontalOptions="Center" />
                     </Grid>
                 </StackLayout>
 
@@ -36,13 +36,15 @@
 
                 <StackLayout Margin="30, 10, 30, 0">
                     <Entry x:Name="nombreactualizar_input" 
+                           Text="{Binding Nombre}"
                            Placeholder="Nombre"
                            TextColor="Black"
                            HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Margin="30, 10, 30, 0">
-                    <Entry x:Name="apellidoactualizar_input" 
+                    <Entry x:Name="apellidoactualizar_input"
+                           Text="{Binding Apellido}"
                            Placeholder="Apellido"
                            TextColor="Black"
                            HorizontalOptions="FillAndExpand"/>
@@ -50,6 +52,7 @@
 
                 <StackLayout Margin="30, 10, 30, 15">
                     <Entry x:Name="telefonoactualizar_input" 
+                           Text="{Binding Telefono}"
                            Placeholder="Teléfono" 
                            Keyboard="Telephone"
                            TextColor="Black"
