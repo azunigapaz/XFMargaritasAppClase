@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using MargaritasAppClase.Controller;
+using MargaritasAppClase.Models;
+using Xamarin.Essentials;
+
 namespace MargaritasAppClase.Views.TabbedMenu
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -28,6 +32,26 @@ namespace MargaritasAppClase.Views.TabbedMenu
         }
 
         private void btnquitarproductocarrito_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnseleccionarubicacion_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnfechadeentrega_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnaudioreferencia_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnrealizarpedido_Clicked(object sender, EventArgs e)
         {
 
         }
