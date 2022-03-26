@@ -12,13 +12,16 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net;
 using Newtonsoft.Json.Linq;
-
+using MargaritasAppClase.Views;
+using System.IO;
+using Plugin.LocalNotification;
 
 namespace MargaritasAppClase.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+
         string pdCorreo = "", pdPass = "";
         public LoginPage()
         {
@@ -60,6 +63,7 @@ namespace MargaritasAppClase.Views
                 var contentJson = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await client.PostAsync(RequestUri, contentJson);
 
+
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     String jsonx = response.Content.ReadAsStringAsync().Result;
@@ -67,9 +71,9 @@ namespace MargaritasAppClase.Views
                     String Mensaje = jsons["success"].ToString();
 
                     //await DisplayAlert("Success", "Datos guardados correctamente", "Ok");
+                    
 
-
-                    if(Mensaje == "true")
+                    if (Mensaje == "true")
                     {
 
                         pdCorreo = correo_input.Text;
@@ -78,8 +82,20 @@ namespace MargaritasAppClase.Views
                         Application.Current.Properties["correo"] = pdCorreo;
                         Application.Current.Properties["pass"] = pdPass;
                         await Application.Current.SavePropertiesAsync();
-
+                        
                         await Navigation.PushAsync(new Views.TabbedMenu.MainTabbedPage());
+                        var notificacion = new NotificationRequest
+                        {
+                            BadgeNumber = 1,
+                            Description = "Tenemos nuevas promociones para ti",
+                            Title = "Te extrañamos",
+                            ReturningData = "Dummy Data",
+                            NotificationId = 1337,
+                            
+                        };
+                        
+                        await NotificationCenter.Current.Show(notificacion );
+                        
                     }
                     else
                     {
@@ -113,5 +129,8 @@ namespace MargaritasAppClase.Views
                 Navigation.PushAsync(new Views.ForgotPassPage());
             })
         });
+
     }
+
 }
+
