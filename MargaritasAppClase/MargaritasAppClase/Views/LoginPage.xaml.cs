@@ -21,8 +21,7 @@ namespace MargaritasAppClase.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-
-        string pdCorreo = "", pdPass = "";
+        string pdCorreo = "";
         public LoginPage()
         {
             InitializeComponent();
@@ -37,6 +36,9 @@ namespace MargaritasAppClase.Views
             if (Application.Current.Properties.ContainsKey("correo"))
             {
                 await Navigation.PushAsync(new Views.TabbedMenu.MainTabbedPage());
+                Navigation.RemovePage(Navigation.NavigationStack[0]);
+                //int numPage = Navigation.NavigationStack.Count;
+                //await DisplayAlert("Mensaje", numPage.ToString(), "Ok");
             }
 
         }
@@ -72,30 +74,30 @@ namespace MargaritasAppClase.Views
 
                     //await DisplayAlert("Success", "Datos guardados correctamente", "Ok");
                     
-
+                   
                     if (Mensaje == "true")
                     {
 
-                        pdCorreo = correo_input.Text;
-                        pdPass = password_input.Text;
+                        pdCorreo = correo_input.Text;                        
 
-                        Application.Current.Properties["correo"] = pdCorreo;
-                        Application.Current.Properties["pass"] = pdPass;
+                        Application.Current.Properties["correo"] = pdCorreo;                        
                         await Application.Current.SavePropertiesAsync();
                         
                         await Navigation.PushAsync(new Views.TabbedMenu.MainTabbedPage());
+
+                        //envia Push Notificacion
                         var notificacion = new NotificationRequest
                         {
                             BadgeNumber = 1,
-                            Description = "Tenemos nuevas promociones para ti",
-                            Title = "Te extrañamos",
+                            Title = "Te extramos",
+                            Description = "Tenemos muchas promociones para ti",
                             ReturningData = "Dummy Data",
                             NotificationId = 1337,
-                            
+
                         };
-                        
-                        await NotificationCenter.Current.Show(notificacion );
-                        
+
+                        await NotificationCenter.Current.Show(notificacion);
+                        //Finaliza el Push de Notificacion
                     }
                     else
                     {
