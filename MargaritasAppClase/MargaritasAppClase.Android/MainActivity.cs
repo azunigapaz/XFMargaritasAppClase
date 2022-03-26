@@ -24,7 +24,6 @@ namespace MargaritasAppClase.Droid
             IsPlayServicesAvailable();
 
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
-
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);          
 
