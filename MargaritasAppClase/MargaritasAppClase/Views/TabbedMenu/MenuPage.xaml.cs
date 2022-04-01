@@ -23,9 +23,10 @@ namespace MargaritasAppClase.Views.TabbedMenu
             GetProductsList();
         }
 
-        private void btnagregarcarrito_Clicked(object sender, EventArgs e)
+        private async void btnagregarcarrito_Clicked(object sender, EventArgs e)
         {
-
+            var item = (sender as Button).BindingContext as ProductsListModel;
+            await DisplayAlert("Aviso", item.Descripcion.ToString(), "Ok");
         }
 
         private async void GetProductsList()
@@ -55,5 +56,10 @@ namespace MargaritasAppClase.Views.TabbedMenu
             }
         }
 
+        private void listview_mainproductos_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            //ProductsListModel productsListModel = (ProductsListModel)e.Item;
+            //await DisplayAlert("Aviso", productsListModel.Descripcion.ToString(), "Ok");
+        }
     }
 }

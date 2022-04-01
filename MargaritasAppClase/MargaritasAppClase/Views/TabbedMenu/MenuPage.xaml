@@ -38,7 +38,8 @@
                               SeparatorColor="LightGray"
                               HasUnevenRows="True"
                               HorizontalOptions="StartAndExpand" 
-                              VerticalOptions="FillAndExpand">
+                              VerticalOptions="FillAndExpand"
+                              ItemTapped="listview_mainproductos_ItemTapped"  >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -68,7 +69,7 @@
                                                         FontAttributes="Bold"
                                                         BackgroundColor="#FE5CA6"
                                                         CornerRadius="10"    
-                                                        Clicked="btnagregarcarrito_Clicked" />
+                                                        Clicked="btnagregarcarrito_Clicked"/>
                                         </StackLayout>
                                     </StackLayout>
 
