@@ -10,13 +10,17 @@ using Xamarin.Forms.Xaml;
 using MargaritasAppClase.Controller;
 using MargaritasAppClase.Models;
 using Xamarin.Essentials;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Net;
+using Newtonsoft.Json.Linq;
 
 namespace MargaritasAppClase.Views.TabbedMenu
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MenuPage : ContentPage
     {
-
+        string correo = Application.Current.Properties["correo"].ToString();
         public MenuPage()
         {
             InitializeComponent();
@@ -25,8 +29,73 @@ namespace MargaritasAppClase.Views.TabbedMenu
 
         private async void btnagregarcarrito_Clicked(object sender, EventArgs e)
         {
-            var item = (sender as Button).BindingContext as ProductsListModel;
-            await DisplayAlert("Aviso", item.Descripcion.ToString(), "Ok");
+            try
+            {
+                var item = (sender as Button).BindingContext as ProductsListModel;
+                //await DisplayAlert("Aviso", item.Descripcion.ToString(), "Ok");
+
+                var listDetalle = new List<CarritoDetalleModel>();
+                listDetalle.Add(new CarritoDetalleModel()
+                {
+                    ID_Producto = item.Id.ToString(),
+                    Cantidad = "1",
+                    Precio = item.Precio.ToString(),
+                    Total = item.Precio.ToString()
+                });
+
+                CarritoModel jsonObject = new CarritoModel();
+                jsonObject.Carrito = new List<CarritoEncabezadoModel>();
+
+                double ldImpueto = 0.00, ldTotal = 0.00;
+                ldImpueto = Convert.ToDouble(item.Precio.ToString()) * .15;
+                ldTotal = Convert.ToDouble(item.Precio.ToString()) + ldImpueto;
+                string totImpueto = "", totCarrito = "";
+                totImpueto = ldImpueto.ToString("0.##");
+                totCarrito = ldTotal.ToString("0.##");
+
+                jsonObject.Carrito.Add(new CarritoEncabezadoModel()
+                {
+
+                    ID_Cliente = correo,
+                    Fecha = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss"),
+                    SubTotal = item.Precio.ToString(),
+                    ISV = totImpueto,
+                    Total = totCarrito,
+                    DetalleCarrito = listDetalle
+
+                });
+
+
+                Uri RequestUri = new Uri("https://webfacturacesar.000webhostapp.com/Margarita/methods/carrito/carritoapp.php");
+
+                var client = new HttpClient();
+                var json = JsonConvert.SerializeObject(jsonObject);
+                
+                var contentJson = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(RequestUri, contentJson);
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+
+                    String jsonx = response.Content.ReadAsStringAsync().Result;
+                    JObject jsons = JObject.Parse(jsonx);
+                    String Mensaje = jsons["msg"].ToString();
+                    await DisplayAlert("Success", "Item: " + item.Descripcion.ToString() + ", agregado al carrito", "Ok");
+
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Estamos en mantenimiento", "Ok");
+                }
+                
+                //await DisplayAlert("Aviso", json, "Ok");
+
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.ToString(), "Ok");
+            }
+
         }
 
         private async void GetProductsList()
