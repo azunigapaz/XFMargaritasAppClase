@@ -36,6 +36,21 @@
                     </StackLayout>
 
                     <StackLayout HorizontalOptions="CenterAndExpand">
+                        <Button x:Name="btnubicaciones"
+                                Text="Ubicaciones"
+                                TextColor="#fe5ca6"
+                                FontSize="15"
+                                FontAttributes="Bold"
+                                BackgroundColor="#FFF"
+                                BorderColor="#FE5CA6" 
+                                BorderWidth="2"
+                                CornerRadius="10"
+                                Margin="0,0,0,10"
+                                WidthRequest="200"
+                                Clicked="btnubicaciones_Clicked"/>
+                    </StackLayout>
+
+                    <StackLayout HorizontalOptions="CenterAndExpand">
                         <Button x:Name="btncerrarsesion"
                             Text="Cerrar Sesion"
                             TextColor="#FFF"
