@@ -87,8 +87,8 @@ namespace MargaritasAppClase.Views.TabbedMenu
                 {
                     await DisplayAlert("Error", "Estamos en mantenimiento", "Ok");
                 }
-                
-                //await DisplayAlert("Aviso", json, "Ok");
+
+                //await DisplayAlert("Aviso", json, "Ok");                
 
             }
             catch (Exception ex)

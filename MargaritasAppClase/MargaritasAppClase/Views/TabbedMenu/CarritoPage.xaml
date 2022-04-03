@@ -32,14 +32,14 @@
                                              Padding="15,10,0,10" 
                                              Orientation="Horizontal" 
                                              VerticalOptions="FillAndExpand">
-                                    <!--<Image Source="{Binding fotografia}" WidthRequest="100" HeightRequest="70"/>-->
+                                    <Image Source="{Binding fotografia}" WidthRequest="100" HeightRequest="70"/>
                                     <StackLayout Orientation="Vertical" Padding="0,0,0,0" VerticalOptions="Center">
-                                        <!--<Label Text="{Binding Id}" IsVisible="False" FontSize="20" Margin="2" TextColor="Black" FontAttributes="Bold"/>
-                                        <Label Text="{Binding Descripcion}" Padding="10,0,0,0" FontSize="20" Margin="2" TextColor="Black" FontAttributes="Bold"/>
+                                        <Label Text="{Binding ID_Carrito}" IsVisible="False" FontSize="20" Margin="2" TextColor="Black" FontAttributes="Bold"/>
+                                        <Label Text="{Binding desc_prod}" Padding="10,0,0,0" FontSize="20" Margin="2" TextColor="Black" FontAttributes="Bold"/>
                                         <StackLayout Orientation="Horizontal" Padding="10,0,0,0">
                                             <Label Text="Precio:" FontSize="14" Margin="0,2" TextColor="Black" />
                                             <Label Text="{Binding Precio}" FontSize="14" Margin="0,2" TextColor="Black" />
-                                        </StackLayout>-->
+                                        </StackLayout>
 
                                         <StackLayout Orientation="Horizontal" WidthRequest="200" Margin="0,0,0,0">
                                             <Button x:Name="btnquitarproductocarrito"
@@ -67,7 +67,7 @@
                                                     Clicked="btnrestarproductocarrito_Clicked" />
 
                                             <Label x:Name="lblcantidadproductocarrito" 
-                                                   Text="0"
+                                                   Text="{Binding Cantidad}"
                                                    TextColor="#000"
                                                    FontSize="20"
                                                    VerticalTextAlignment="Center" />

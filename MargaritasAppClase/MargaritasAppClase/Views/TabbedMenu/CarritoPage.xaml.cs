@@ -20,6 +20,13 @@ namespace MargaritasAppClase.Views.TabbedMenu
         public CarritoPage()
         {
             InitializeComponent();
+            GetCarritoList();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            GetCarritoList();
         }
 
         private void btnagregarproductocarrito_Clicked(object sender, EventArgs e)

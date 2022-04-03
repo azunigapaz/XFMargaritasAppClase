@@ -79,7 +79,7 @@ namespace MargaritasAppClase.Controller
 
             using (HttpClient cliente = new HttpClient())
             {
-                var respuesta = await cliente.GetAsync("https://webfacturacesar.000webhostapp.com/Margarita/methods/carrito/getItemsCarrito.php?" + correo);
+                var respuesta = await cliente.GetAsync("https://webfacturacesar.000webhostapp.com/Margarita/methods/carrito/getItemsCarrito.php?mail=" + correo);
 
                 if (respuesta.IsSuccessStatusCode)
                 {
@@ -98,7 +98,9 @@ namespace MargaritasAppClase.Controller
 
                             foreach (var itemdetalle in item.DetalleCarrito)
                             {
-                                string idCarritoDetalle = itemdetalle.ID_CarritoDet.ToString(), fkIdCarrito = itemdetalle.FK_ID_Carrito.ToString(), descProducto = itemdetalle.desc_prod.ToString(), img64 = itemdetalle.foto.ToString();
+                                string idCarritoDetalle = itemdetalle["ID_CarritoDet"].ToString();
+                                string fkIdCarrito = itemdetalle.ID_Carrito.ToString();
+                                string descProducto = itemdetalle.desc_prod.ToString(), img64 = itemdetalle.foto.ToString(), cantidad = itemdetalle.Cantidad.ToString(), precio = itemdetalle.Precio.ToString(), totalDetalle = itemdetalle.Total.ToString();
 
                                 newBytes = Convert.FromBase64String(img64);
                                 var stream = new MemoryStream(newBytes);
@@ -115,7 +117,10 @@ namespace MargaritasAppClase.Controller
                                                 fkIdCarrito,
                                                 descProducto, 
                                                 img64,
-                                                ImageSource.FromStream(() => stream)
+                                                ImageSource.FromStream(() => stream),
+                                                cantidad,
+                                                precio,
+                                                totalDetalle
                                                 ));
 
                             }
