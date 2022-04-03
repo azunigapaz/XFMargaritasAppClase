@@ -43,7 +43,7 @@ namespace MargaritasAppClase.Views.TabbedMenu
                     Total = item.Precio.ToString()
                 });
 
-                CarritoModel jsonObject = new CarritoModel();
+                SaveCarritoModel jsonObject = new SaveCarritoModel();
                 jsonObject.Carrito = new List<CarritoEncabezadoModel>();
 
                 double ldImpueto = 0.00, ldTotal = 0.00;

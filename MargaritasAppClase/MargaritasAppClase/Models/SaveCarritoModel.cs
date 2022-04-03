@@ -5,7 +5,7 @@ using MargaritasAppClase.Models;
 
 namespace MargaritasAppClase.Models
 {
-    public class CarritoModel
+    public class SaveCarritoModel
     {
         public List<CarritoEncabezadoModel> Carrito { get; set; }
     }
