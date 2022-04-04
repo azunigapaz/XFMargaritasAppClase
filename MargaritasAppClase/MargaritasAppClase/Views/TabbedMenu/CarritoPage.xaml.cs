@@ -44,7 +44,7 @@ namespace MargaritasAppClase.Views.TabbedMenu
 
         }
 
-        private void btnseleccionarubicacion_Clicked(object sender, EventArgs e)
+        private void btnagregarubicacioncarrito_Clicked(object sender, EventArgs e)
         {
 
         }

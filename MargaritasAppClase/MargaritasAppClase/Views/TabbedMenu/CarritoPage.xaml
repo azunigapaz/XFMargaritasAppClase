@@ -93,20 +93,12 @@
 
                 <StackLayout Padding="0" VerticalOptions="Start">
                     <StackLayout Orientation="Horizontal" Padding="0,5" HorizontalOptions="CenterAndExpand">
-                                            
-                        <Button x:Name="btnseleccionarubicacion"
-                                Text="Ubicacion"
-                                TextColor="#FFF"
-                                BackgroundColor="#000"
-                                WidthRequest="110"
-                                Margin="0,-30,0,0"
-                                Clicked="btnseleccionarubicacion_Clicked" />
 
                         <Button x:Name="btnfechadeentrega"
                                 Text="Fecha de Entrega"
                                 TextColor="#FFF"
                                 BackgroundColor="#000"
-                                WidthRequest="110"
+                                WidthRequest="150"
                                 Margin="0,-30,0,0"
                                 Clicked="btnfechadeentrega_Clicked" />
 
@@ -114,12 +106,29 @@
                                 Text="Audio"
                                 TextColor="#FFF"
                                 BackgroundColor="#000"
-                                WidthRequest="110"
+                                WidthRequest="150"
                                 Margin="0,-30,0,0"
                                 Clicked="btnaudioreferencia_Clicked" />
                         
                     </StackLayout>
-                    
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Picker x:Name="selectubicacion"
+                                Title="Seleccione una Ubicacion"
+                                WidthRequest="250"
+                                Margin="5,0,0,0">
+                        </Picker>
+
+                        <Button x:Name="btnagregarubicacioncarrito" 
+                                Text="&#xf055;"
+                                BackgroundColor="Transparent"
+                                FontSize="35"
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                WidthRequest="55"
+                                Margin="-10,0,0,0" 
+                                Clicked="btnagregarubicacioncarrito_Clicked"/>
+                    </StackLayout>
+
                     <StackLayout Orientation="Horizontal" Margin="50,10,50,10">
                         <Label Text="Sub Total:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
                         <Label x:Name="lblsubtotal" Text="L. 00.00" TextColor="#000" FontSize="16" FontAttributes="None" HorizontalOptions="EndAndExpand" />
