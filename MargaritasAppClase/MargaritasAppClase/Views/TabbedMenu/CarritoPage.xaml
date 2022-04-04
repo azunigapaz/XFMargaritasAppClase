@@ -116,7 +116,7 @@
                         <Picker x:Name="selectubicacion"
                                 Title="Seleccione una Ubicacion"
                                 WidthRequest="250"
-                                Margin="5,0,0,0">
+                                Margin="8,0,0,0">
                         </Picker>
 
                         <Button x:Name="btnagregarubicacioncarrito" 
@@ -124,8 +124,8 @@
                                 BackgroundColor="Transparent"
                                 FontSize="35"
                                 FontFamily="{StaticResource FontAwesomeSolid}"
-                                WidthRequest="55"
-                                Margin="-10,0,0,0" 
+                                WidthRequest="60"
+                                Margin="-13,0,0,0" 
                                 Clicked="btnagregarubicacioncarrito_Clicked"/>
                     </StackLayout>
 
