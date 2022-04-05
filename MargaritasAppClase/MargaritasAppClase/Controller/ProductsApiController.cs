@@ -32,38 +32,23 @@ namespace MargaritasAppClase.Controller
                     byte[] newBytes = null;
 
 
-                    //if (contenido.Length > 28)
-                    //{
-
-                    //    foreach (var item in dyn.items)
-                    //    {
-                    //        string img64 = item.Foto.ToString();
-                    //        newBytes = Convert.FromBase64String(img64);
-                    //        var stream = new MemoryStream(newBytes);
-
-                    //        listaproductos.Add(new ProductsListModel(
-                    //                        item.Id.ToString(), item.Descripcion.ToString(),
-                    //                        item.Precio.ToString(),
-                    //                        ImageSource.FromStream(() => stream),
-                    //                        img64, item.Cantidad.ToString()
-                    //                        ));
-                    //    }
-                    //}
-
-                    foreach (var item in dyn.items)
+                    if (contenido.Length > 28)
                     {
-                        string img64 = item.Foto.ToString();
-                        newBytes = Convert.FromBase64String(img64);
-                        var stream = new MemoryStream(newBytes);
 
-                        listaproductos.Add(new ProductsListModel(
-                                        item.Id.ToString(), item.Descripcion.ToString(),
-                                        item.Precio.ToString(),
-                                        ImageSource.FromStream(() => stream),
-                                        img64, item.Cantidad.ToString()
-                                        ));
-                    }
-                    
+                        foreach (var item in dyn.items)
+                        {
+                            string img64 = item.Foto.ToString();
+                            newBytes = Convert.FromBase64String(img64);
+                            var stream = new MemoryStream(newBytes);
+
+                            listaproductos.Add(new ProductsListModel(
+                                            item.Id.ToString(), item.Descripcion.ToString(),
+                                            item.Precio.ToString(),
+                                            ImageSource.FromStream(() => stream),
+                                            img64, item.Cantidad.ToString()
+                                            ));
+                        }
+                    }                    
 
                 }
             }
@@ -165,25 +150,26 @@ namespace MargaritasAppClase.Controller
                     byte[] newBytes = null;
 
 
-                    foreach (var item in dyn.Ubicaciones)
+                    if (contenido.Length > 28)
                     {
-                        string img64 = item.Foto.ToString();
-                        newBytes = Convert.FromBase64String(img64);
-                        var stream = new MemoryStream(newBytes);
+                        foreach (var item in dyn.Ubicaciones)
+                        {
+                            string img64 = item.Foto.ToString();
+                            newBytes = Convert.FromBase64String(img64);
+                            var stream = new MemoryStream(newBytes);
 
-                        listaubicaciones.Add(new UbicacionesListModel(
-                                        item.ID_Ubicacion.ToString(), 
-                                        item.ID_Cliente.ToString(),
-                                        item.Latitud.ToString(),
-                                        item.Longitud.ToString(),
-                                        item.Direccion.ToString(),
-                                        img64,
-                                        item.Nota.ToString(),
-                                        ImageSource.FromStream(() => stream)                                        
-                                        ));
+                            listaubicaciones.Add(new UbicacionesListModel(
+                                            item.ID_Ubicacion.ToString(),
+                                            item.ID_Cliente.ToString(),
+                                            item.Latitud.ToString(),
+                                            item.Longitud.ToString(),
+                                            item.Direccion.ToString(),
+                                            img64,
+                                            item.Nota.ToString(),
+                                            ImageSource.FromStream(() => stream)
+                                            ));
+                        }
                     }
-
-
                 }
             }
             return listaubicaciones;
