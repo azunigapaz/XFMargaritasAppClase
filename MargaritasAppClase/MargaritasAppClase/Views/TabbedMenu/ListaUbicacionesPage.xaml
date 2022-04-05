@@ -25,23 +25,24 @@
                       HasUnevenRows="True"
                       HorizontalOptions="StartAndExpand" 
                       VerticalOptions="FillAndExpand"
-                      ItemSelected="ls_ubicaciones_ItemSelected">
+                      ItemSelected="ls_ubicaciones_ItemSelected"
+                      ItemTapped="ls_ubicaciones_ItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid Padding="5">
                                 <Frame BackgroundColor="#FFF">
                                     <StackLayout Orientation="Horizontal" Padding="10" VerticalOptions="FillAndExpand" MinimumHeightRequest="120">
-                                        <Image Source="Binding Fotografia" WidthRequest="100" HeightRequest="70" />
+                                        <Image Source="{Binding fotografia}" WidthRequest="100" HeightRequest="70" />
                                         <StackLayout Orientation="Vertical" Padding="2" VerticalOptions="Center">
-                                            <Label Text="Binding Descripcion" FontSize="20" Margin="2" TextColor="#000" FontAttributes="Bold" />
+                                            <Label Text="{Binding Direccion}" FontSize="20" Margin="2" TextColor="#000" FontAttributes="Bold" />
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="Longitud:" FontSize="14" Margin="2" TextColor="#000" FontAttributes="Bold" />
-                                                <Label Text="Binding Longitud" FontSize="14" Margin="2" TextColor="#000" />
+                                                <Label Text="{Binding Longitud}" FontSize="14" Margin="2" TextColor="#000" />
                                             </StackLayout>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="Latitud:" FontSize="14" Margin="2" TextColor="#000" FontAttributes="Bold" />
-                                                <Label Text="Binding Latitud" FontSize="14" Margin="2" TextColor="#000" />
+                                                <Label Text="{Binding Latitud}" FontSize="14" Margin="2" TextColor="#000" />
                                             </StackLayout>
                                         </StackLayout>
                                     </StackLayout>

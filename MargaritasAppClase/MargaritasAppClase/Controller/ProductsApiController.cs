@@ -32,23 +32,39 @@ namespace MargaritasAppClase.Controller
                     byte[] newBytes = null;
 
 
-                    if (contenido.Length > 28)
+                    //if (contenido.Length > 28)
+                    //{
+
+                    //    foreach (var item in dyn.items)
+                    //    {
+                    //        string img64 = item.Foto.ToString();
+                    //        newBytes = Convert.FromBase64String(img64);
+                    //        var stream = new MemoryStream(newBytes);
+
+                    //        listaproductos.Add(new ProductsListModel(
+                    //                        item.Id.ToString(), item.Descripcion.ToString(),
+                    //                        item.Precio.ToString(),
+                    //                        ImageSource.FromStream(() => stream),
+                    //                        img64, item.Cantidad.ToString()
+                    //                        ));
+                    //    }
+                    //}
+
+                    foreach (var item in dyn.items)
                     {
+                        string img64 = item.Foto.ToString();
+                        newBytes = Convert.FromBase64String(img64);
+                        var stream = new MemoryStream(newBytes);
 
-                        foreach (var item in dyn.items)
-                        {
-                            string img64 = item.Foto.ToString();
-                            newBytes = Convert.FromBase64String(img64);
-                            var stream = new MemoryStream(newBytes);
-
-                            listaproductos.Add(new ProductsListModel(
-                                            item.Id.ToString(), item.Descripcion.ToString(),
-                                            item.Precio.ToString(),
-                                            ImageSource.FromStream(() => stream),
-                                            img64, item.Cantidad.ToString()
-                                            ));
-                        }
+                        listaproductos.Add(new ProductsListModel(
+                                        item.Id.ToString(), item.Descripcion.ToString(),
+                                        item.Precio.ToString(),
+                                        ImageSource.FromStream(() => stream),
+                                        img64, item.Cantidad.ToString()
+                                        ));
                     }
+                    
+
                 }
             }
             return listaproductos;
@@ -130,6 +146,47 @@ namespace MargaritasAppClase.Controller
                 }
             }
             return listacarrito;
+        }
+
+
+        public async static Task<List<UbicacionesListModel>> ControllerObtenerListaUbicaciones(string correo)
+        {
+            List<UbicacionesListModel> listaubicaciones = new List<UbicacionesListModel>();
+
+            using (HttpClient cliente = new HttpClient())
+            {
+                var respuesta = await cliente.GetAsync("https://webfacturacesar.000webhostapp.com/Margarita/methods/ubicaciones/?mail=" + correo);
+
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    string contenido = respuesta.Content.ReadAsStringAsync().Result.ToString();
+
+                    dynamic dyn = JsonConvert.DeserializeObject(contenido);
+                    byte[] newBytes = null;
+
+
+                    foreach (var item in dyn.Ubicaciones)
+                    {
+                        string img64 = item.Foto.ToString();
+                        newBytes = Convert.FromBase64String(img64);
+                        var stream = new MemoryStream(newBytes);
+
+                        listaubicaciones.Add(new UbicacionesListModel(
+                                        item.ID_Ubicacion.ToString(), 
+                                        item.ID_Cliente.ToString(),
+                                        item.Latitud.ToString(),
+                                        item.Longitud.ToString(),
+                                        item.Direccion.ToString(),
+                                        img64,
+                                        item.Nota.ToString(),
+                                        ImageSource.FromStream(() => stream)                                        
+                                        ));
+                    }
+
+
+                }
+            }
+            return listaubicaciones;
         }
 
     }

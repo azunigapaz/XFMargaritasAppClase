@@ -6,9 +6,10 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
+                <Label x:Name="id" Text="{Binding ID_Ubicacion}" IsVisible="False"></Label>
                 <Grid HeightRequest="150" WidthRequest="150" HorizontalOptions="Center" Margin="0,25,0,0">
                     <Ellipse Stroke="#f06292" StrokeThickness="2" Aspect="Fill" />
-                    <controls:CircleImage x:Name="imgubicacion" HeightRequest="150" WidthRequest="150" HorizontalOptions="Center" />
+                    <controls:CircleImage x:Name="imgubicacion" Source="{Binding fotografia}" HeightRequest="150" WidthRequest="150" HorizontalOptions="Center" />
                 </Grid>
 
                 <StackLayout HorizontalOptions="CenterAndExpand">
@@ -28,7 +29,7 @@
 
                 <StackLayout Margin="30, 5, 30, 0">
                     <Entry x:Name="actualizarlongitud_input"
-                           Text="Binding Longitud"
+                           Text=""
                            Placeholder="Longitud"
                            TextColor="Black"
                            HorizontalOptions="FillAndExpand"/>
@@ -36,7 +37,7 @@
 
                 <StackLayout Margin="30, 10, 30, 0">
                     <Entry x:Name="actualizarlatitud_input"
-                           Text="Binding Latitud"
+                           Text=""
                            Placeholder="Latitud"
                            TextColor="Black"
                            HorizontalOptions="FillAndExpand"/>
@@ -44,7 +45,7 @@
 
                 <StackLayout Margin="30, 10, 30, 10">
                     <Entry x:Name="actualizardescripcion_input"
-                           Text="Binding Descripcion"
+                           Text="{Binding Direccion}"
                            Placeholder="Descripcion" 
                            TextColor="Black"
                            HorizontalOptions="FillAndExpand"/>
