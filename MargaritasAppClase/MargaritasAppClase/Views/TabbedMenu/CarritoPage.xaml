@@ -142,12 +142,12 @@
                         <Label x:Name="lbltotalapagar" Text="L. 00.00" TextColor="#000" FontSize="16" FontAttributes="None" HorizontalOptions="EndAndExpand" />
                     </StackLayout>
                     <StackLayout BackgroundColor="#FFF">
-                        <Button x:Name="btnrealizarpedido"
-                                Text="Realizar Pedido"
+                        <Button x:Name="btnprocesarorden"
+                                Text="Procesar Orden"
                                 TextColor="#FFF"
                                 BackgroundColor="#ed4398"
                                 Margin="10,0,10,10" 
-                                Clicked="btnrealizarpedido_Clicked"/>
+                                Clicked="btnprocesarorden_Clicked"/>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>

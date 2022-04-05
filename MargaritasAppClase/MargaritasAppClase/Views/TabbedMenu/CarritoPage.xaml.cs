@@ -59,9 +59,9 @@ namespace MargaritasAppClase.Views.TabbedMenu
 
         }
 
-        private void btnrealizarpedido_Clicked(object sender, EventArgs e)
+        private async void btnprocesarorden_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new PagoOrdenPage());
         }
 
         private async void GetCarritoList()
