@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MargaritasAppClase.Views.EntregadorMenu.MenuEntregadorPage">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout Padding="0" Margin="0, 0, 0, 0" VerticalOptions="FillAndExpand">
+                <Frame BackgroundColor="#fe5ca6">
+                    <StackLayout>
+                        <Image Source="flowericon_sinfondo.png" HeightRequest="50" HorizontalOptions="CenterAndExpand" Margin="0,-7,0,5"/>
+                        <Frame HeightRequest="50" Padding="20,5,20,5" CornerRadius="10">
+                            <StackLayout Orientation="Horizontal">
+                                <Frame CornerRadius="50" HeightRequest="0" WidthRequest="25" Padding="0" Margin="-6,0,2,0">
+                                    <Image Source="lupa_icon.png" />
+                                </Frame>
+                                <Entry x:Name="inputbuscarordenes_repartidorpage"  
+                                       Placeholder="Buscar"
+                                       TextColor="Black"
+                                       PlaceholderColor="Gray"
+                                       BackgroundColor="Transparent"
+                                       ClearButtonVisibility="WhileEditing"
+                                       HorizontalOptions="FillAndExpand"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+
+                <AbsoluteLayout  IsVisible="false" Padding="12"
+                                 AbsoluteLayout.LayoutFlags="PositionProportional"
+                                 AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" x:Name="slrepartidormainpage" HorizontalOptions="Center">
+
+                    <ActivityIndicator IsRunning="false" x:Name="spinnerrepartidormainpage" VerticalOptions="Center"
+                                       HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"/>
+                </AbsoluteLayout>
+
+                <ListView x:Name="listview_mainproductos" 
+                              SeparatorVisibility="Default"
+                              SeparatorColor="LightGray"
+                              HasUnevenRows="True"
+                              HorizontalOptions="StartAndExpand" 
+                              VerticalOptions="FillAndExpand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout MinimumHeightRequest="120"
+                                                 Padding="10" 
+                                                 Orientation="Horizontal" 
+                                                 VerticalOptions="FillAndExpand">
+                                    <Image Source="canastadeflores_icono.png" WidthRequest="100" HeightRequest="70"/>
+                                    <StackLayout Orientation="Vertical" Padding="5" VerticalOptions="Center">
+                                        <!--<StackLayout Orientation="Horizontal">
+                                            <Label Text="Orden:" FontSize="14" Margin="0,2" TextColor="Black" />
+                                            <Label Text="{Binding Id}" IsVisible="False" FontSize="20" Margin="2" TextColor="Black" FontAttributes="Bold"/>
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Direccion:" FontSize="14" Margin="0,2" TextColor="Black" />
+                                            <Label Text="{Binding Direccion}" FontSize="20" Margin="2" TextColor="Black" FontAttributes="Bold" />
+                                        </StackLayout>
+                                        
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Precio:" FontSize="14" Margin="0,2" TextColor="Black" />
+                                            <Label Text="{Binding Precio}" FontSize="14" Margin="0,2" TextColor="Black" />
+                                        </StackLayout>-->
+
+                                        <StackLayout Orientation="Horizontal" WidthRequest="200" Margin="0,0,0,5">
+                                            <Button x:Name="btnverorden" 
+                                                        Text="Agregar al Carrito" 
+                                                        FontSize="15"
+                                                        TextColor="#FFF"
+                                                        FontAttributes="Bold"
+                                                        BackgroundColor="#FE5CA6"
+                                                        CornerRadius="10"    
+                                                        Clicked="btnverorden_Clicked"/>
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Horizontal" WidthRequest="200" Margin="0,0,0,8">
+                                            <Button x:Name="btncambiarstatusorden" 
+                                                        Text="Agregar al Carrito" 
+                                                        FontSize="15"
+                                                        TextColor="#FFF"
+                                                        FontAttributes="Bold"
+                                                        BackgroundColor="#000"
+                                                        CornerRadius="10"    
+                                                        Clicked="btncambiarstatusorden_Clicked"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
