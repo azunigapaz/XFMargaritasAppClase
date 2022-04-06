@@ -24,6 +24,12 @@ namespace MargaritasAppClase.Views.TabbedMenu
         public MenuPage()
         {
             InitializeComponent();
+            //GetProductsList();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             GetProductsList();
         }
 
@@ -100,28 +106,35 @@ namespace MargaritasAppClase.Views.TabbedMenu
 
         private async void GetProductsList()
         {
-            var AccesoInternet = Connectivity.NetworkAccess;
-
-            if (AccesoInternet == NetworkAccess.Internet)
+            try
             {
-                sl.IsVisible = true;
-                spinner.IsRunning = true;
+                var AccesoInternet = Connectivity.NetworkAccess;
 
-                List<ProductsListModel> listaproducros = new List<ProductsListModel>();
-                listaproducros = await ProductsApiController.ControllerObtenerListaProductos();
-
-                if (listaproducros.Count > 0)
+                if (AccesoInternet == NetworkAccess.Internet)
                 {
-                    listview_mainproductos.ItemsSource = null;
-                    listview_mainproductos.ItemsSource = listaproducros;
-                }
-                else
-                {
-                    await DisplayAlert("Notificación", $"Lista vacía, ingrese datos", "Ok");
-                }
+                    sl.IsVisible = true;
+                    spinner.IsRunning = true;
 
-                sl.IsVisible = false;
-                spinner.IsRunning = false;
+                    List<ProductsListModel> listaproducros = new List<ProductsListModel>();
+                    listaproducros = await ProductsApiController.ControllerObtenerListaProductos();
+
+                    if (listaproducros.Count > 0)
+                    {
+                        listview_mainproductos.ItemsSource = null;
+                        listview_mainproductos.ItemsSource = listaproducros;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Notificación", $"Lista vacía, ingrese datos", "Ok");
+                    }
+
+                    sl.IsVisible = false;
+                    spinner.IsRunning = false;
+                }
+            }
+            catch(Exception ex)
+            {
+
             }
         }
 
