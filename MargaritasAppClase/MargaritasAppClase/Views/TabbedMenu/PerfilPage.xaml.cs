@@ -21,6 +21,11 @@ namespace MargaritasAppClase.Views.TabbedMenu
         byte[] newBytes = null;
         string id = "", nombre = "",apellido = "", telefono = "", foto = "", correo = Application.Current.Properties["correo"].ToString();
 
+        private async void btnformasdepago_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ListaTarjetasPage());
+        }
+
         private async void btnubicaciones_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ListaUbicacionesPage());
