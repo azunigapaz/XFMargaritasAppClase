@@ -16,5 +16,10 @@ namespace MargaritasAppClase.Views.EntregadorMenu
         {
             InitializeComponent();
         }
+
+        private void btntomarphotoactualizadarepartidor_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

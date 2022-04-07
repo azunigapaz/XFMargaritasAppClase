@@ -16,5 +16,15 @@ namespace MargaritasAppClase.Views.EntregadorMenu
         {
             InitializeComponent();
         }
+
+        private async void btnactualizarperfilrepartidorpage_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ActualizarPerfilEntregadorPage());
+        }
+
+        private void btncerrarsesionrepartidor_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
