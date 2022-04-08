@@ -115,7 +115,8 @@
                     <Picker x:Name="selectubicacion"
                                 Title="Seleccione una Ubicacion"
                                 WidthRequest="250"
-                                Margin="8,0,0,0">
+                                Margin="8,0,0,0"
+                                SelectedIndexChanged="selectubicacion_SelectedIndexChanged">
                     </Picker>
 
                     <Button x:Name="btnagregarubicacioncarrito" 

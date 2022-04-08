@@ -24,7 +24,7 @@ namespace MargaritasAppClase.Views.TabbedMenu
 
         private void btnrealizarpagoefectivo_Clicked(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnrealizarpagotarjeta_Clicked(object sender, EventArgs e)

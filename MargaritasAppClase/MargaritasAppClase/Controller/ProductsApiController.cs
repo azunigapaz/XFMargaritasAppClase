@@ -101,6 +101,7 @@ namespace MargaritasAppClase.Controller
                             {
                                 string idCarritoDetalle = itemdetalle["ID_CarritoDet"].ToString();
                                 string fkIdCarrito = itemdetalle.ID_Carrito.ToString();
+                                string codigoProducto = itemdetalle.ID_Producto.ToString();
                                 string descProducto = itemdetalle.desc_prod.ToString(), img64 = itemdetalle.foto.ToString(), cantidad = itemdetalle.Cantidad.ToString(), precio = itemdetalle.Precio.ToString(), totalDetalle = itemdetalle.Total.ToString();
 
                                 newBytes = Convert.FromBase64String(img64);
@@ -116,6 +117,7 @@ namespace MargaritasAppClase.Controller
                                                 total,
                                                 idCarritoDetalle,
                                                 fkIdCarrito,
+                                                codigoProducto,
                                                 descProducto, 
                                                 img64,
                                                 ImageSource.FromStream(() => stream),

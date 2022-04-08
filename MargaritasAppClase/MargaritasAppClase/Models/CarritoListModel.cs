@@ -7,7 +7,7 @@ namespace MargaritasAppClase.Models
 {
     public class CarritoListModel
     {
-        public CarritoListModel(string ID_Carrito, string ID_Cliente, string fecha, string SubTotal, string ISV, string Total, string ID_CarritoDet, string FK_ID_Carrito, string desc_prod, string foto, ImageSource fotografia, string Cantidad, string Precio, string TotalDetalle)
+        public CarritoListModel(string ID_Carrito, string ID_Cliente, string fecha, string SubTotal, string ISV, string Total, string ID_CarritoDet, string FK_ID_Carrito, string ID_Producto, string desc_prod, string foto, ImageSource fotografia, string Cantidad, string Precio, string TotalDetalle)
         {
             this.ID_Carrito = ID_Carrito;
             this.ID_Cliente = ID_Cliente;
@@ -17,6 +17,7 @@ namespace MargaritasAppClase.Models
             this.Total = Total;
             this.ID_CarritoDet = ID_CarritoDet;
             this.FK_ID_Carrito = FK_ID_Carrito;
+            this.ID_Producto = ID_Producto;
             this.desc_prod = desc_prod;
             this.foto = foto;
             this.fotografia = fotografia;
@@ -33,6 +34,7 @@ namespace MargaritasAppClase.Models
         public string Total { get; set; }
         public string ID_CarritoDet { get; set; }
         public string FK_ID_Carrito { get; set; }
+        public string ID_Producto { get; set; }
         public string desc_prod { get; set; }
         public string foto { get; set; }
         public ImageSource fotografia { get; set; }
