@@ -175,5 +175,42 @@ namespace MargaritasAppClase.Controller
             return listaubicaciones;
         }
 
+        public async static Task<List<MetodosPagoListModel>> ControllerObtenerListaMetodosPagos(string correo)
+        {
+            List<MetodosPagoListModel> listametodospago = new List<MetodosPagoListModel>();
+
+            using (HttpClient cliente = new HttpClient())
+            {
+                var respuesta = await cliente.GetAsync("https://webfacturacesar.000webhostapp.com/Margarita/methods/payment/?mail=" + correo);
+
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    string contenido = respuesta.Content.ReadAsStringAsync().Result.ToString();
+
+                    dynamic dyn = JsonConvert.DeserializeObject(contenido);
+
+                    if (contenido.Length > 28)
+                    {
+                        foreach (var item in dyn.Formas)
+                        {
+
+                            listametodospago.Add(new MetodosPagoListModel(
+                                            item.ID_Rel_Pago.ToString(),
+                                            item.ID_Cliente.ToString(),
+                                            item.ID_FormaPago.ToString(),
+                                            item.Descripcion.ToString(),
+                                            item.NumTcTd.ToString(),
+                                            item.Titular.ToString(),
+                                            item.Fecha_exp.ToString(),
+                                            item.CCV.ToString(),
+                                            item.Predeterminada.ToString()
+                                            ));
+                        }
+                    }
+                }
+            }
+            return listametodospago;
+        }
+
     }
 }

@@ -25,7 +25,8 @@
                       HasUnevenRows="True"
                       HorizontalOptions="StartAndExpand" 
                       VerticalOptions="FillAndExpand"
-                      ItemSelected="ls_tarjetas_ItemSelected">
+                      ItemSelected="ls_tarjetas_ItemSelected"
+                      ItemTapped="ls_tarjetas_ItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -34,10 +35,10 @@
                                     <StackLayout Orientation="Horizontal" Padding="10" VerticalOptions="FillAndExpand" MinimumHeightRequest="120">
                                         <Image Source="tarjetalista_icono.png" WidthRequest="100" HeightRequest="70" />
                                         <StackLayout Orientation="Vertical" Padding="2" VerticalOptions="Center">
-                                            <Label Text="Binding Titular" FontSize="20" Margin="2" TextColor="#000" FontAttributes="Bold" />
+                                            <Label Text="{Binding Titular}" FontSize="20" Margin="2" TextColor="#000" FontAttributes="Bold" />
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="Numero:" FontSize="14" Margin="2" TextColor="#000" FontAttributes="Bold" />
-                                                <Label Text="Binding NumTcTd" FontSize="14" Margin="2" TextColor="#000" />
+                                                <Label Text="{Binding NumTcTd}" FontSize="14" Margin="2" TextColor="#000" />
                                             </StackLayout>
                                         </StackLayout>
                                     </StackLayout>
