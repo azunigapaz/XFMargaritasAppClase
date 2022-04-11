@@ -47,7 +47,7 @@
                   Margin="10,35,10,0"
                   HorizontalOptions="Center">
 
-                <RadioButton Grid.Column="0" 
+                <RadioButton x:Name="radioefectivo" Grid.Column="0" 
                              GroupName="Group1" 
                              ControlTemplate="{StaticResource CustomRadioTemplate}">
                     <RadioButton.Content>
@@ -58,7 +58,7 @@
                     </RadioButton.Content>
                 </RadioButton>
 
-                <RadioButton Grid.Column="1" 
+                <RadioButton x:Name="radiotarjeta" Grid.Column="1" 
                              GroupName="Group1" 
                              ControlTemplate="{StaticResource CustomRadioTemplate}">
                     <RadioButton.Content>
@@ -69,7 +69,11 @@
                     </RadioButton.Content>
                 </RadioButton>
 
-                <StackLayout Margin="0,20,-160,0" HorizontalOptions="CenterAndExpand" Grid.Row="1" WidthRequest="300" IsVisible="False">
+                <StackLayout x:Name="layoutefectivo" Margin="0,20,-160,0" HorizontalOptions="CenterAndExpand" Grid.Row="1" WidthRequest="300" IsVisible="False">
+                    <StackLayout Orientation="Horizontal" Margin="3,0,0,-3">
+                        <Label Text="Cantidad a Pagar:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
+                    </StackLayout>
+                    
                     <Entry x:Name="cantidadefectivo_input" 
                            Placeholder="Cantidad"
                            Keyboard="Numeric"/>
@@ -82,7 +86,7 @@
                             Clicked="btnrealizarpagoefectivo_Clicked" />
                 </StackLayout>
 
-                <StackLayout Margin="0,20,-160,0" HorizontalOptions="CenterAndExpand" Grid.Row="1" WidthRequest="300" IsVisible="False">
+                <StackLayout x:Name="layouttarjeta" Margin="0,20,-160,0" HorizontalOptions="CenterAndExpand" Grid.Row="1" WidthRequest="300" IsVisible="False">
                     <StackLayout Orientation="Horizontal">
                         <Picker x:Name="selecttarjeta"
                                 Title="Seleccione una Tarjeta"
@@ -100,6 +104,10 @@
                                 Clicked="btnagregartarjetaorden_Clicked"/>
                     </StackLayout>
 
+                    <StackLayout Orientation="Horizontal" Margin="5,10,5,10">
+                        <Label Text="Cantidad a Debitar:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
+                        <Label x:Name="lblcantdebitar" Text="L. 00.00" TextColor="#000" FontSize="16" FontAttributes="None" HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
 
                     <Button x:Name="btnrealizarpagotarjeta"
                             Text="Realizar Pedido"

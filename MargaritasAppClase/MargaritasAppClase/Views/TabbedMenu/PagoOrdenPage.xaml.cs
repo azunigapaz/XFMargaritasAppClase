@@ -15,6 +15,41 @@ namespace MargaritasAppClase.Views.TabbedMenu
         public PagoOrdenPage()
         {
             InitializeComponent();
+            SelectPagoOrden();
+        }
+
+        private void SelectPagoOrden()
+        {
+            radioefectivo.CheckedChanged += Radioefectivo_CheckedChanged;
+            radiotarjeta.CheckedChanged += Radiotarjeta_CheckedChanged;
+        }
+
+        private void Radioefectivo_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            var radiobutton = sender as RadioButton;
+
+            if (radiobutton.IsChecked)
+            {
+                layoutefectivo.IsVisible = true;
+            }
+            else if (!radiobutton.IsChecked)
+            {
+                layoutefectivo.IsVisible = false;
+            }
+        }
+
+        private void Radiotarjeta_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            var radiobutton = sender as RadioButton;
+
+            if (radiobutton.IsChecked)
+            {
+                layouttarjeta.IsVisible = true;
+            } 
+            else if (!radiobutton.IsChecked)
+            {
+                layouttarjeta.IsVisible = false;
+            }
         }
 
         private void btnprocesarorden_Clicked(object sender, EventArgs e)
