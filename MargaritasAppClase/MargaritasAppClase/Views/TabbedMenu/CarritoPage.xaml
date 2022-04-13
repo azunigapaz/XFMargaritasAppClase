@@ -93,13 +93,9 @@
             <StackLayout Padding="0" VerticalOptions="End" Margin="0,30,0,0">
                 <StackLayout Orientation="Horizontal" Padding="0" HorizontalOptions="CenterAndExpand">
 
-                    <Button x:Name="btnfechadeentrega"
-                                Text="Fecha de Entrega"
-                                TextColor="#FFF"
-                                BackgroundColor="#000"
+                    <DatePicker x:Name="datefechadeentrega"
                                 WidthRequest="150"
-                                Margin="0,-30,0,0"
-                                Clicked="btnfechadeentrega_Clicked" />
+                                Margin="0,-30,0,0" />
 
                     <Button x:Name="btnaudioreferencia"
                                 Text="Audio"
