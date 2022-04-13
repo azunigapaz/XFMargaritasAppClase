@@ -82,7 +82,7 @@
                         <Label Text="Observaciones:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
                     </StackLayout>
                     
-                    <Entry x:Name="comentariopedidoefectivo_input" />
+                    <Entry x:Name="comentariopedidoefectivo_input" HeightRequest="100" />
 
                     <Button x:Name="btnrealizarpagoefectivo"
                             Text="Realizar Pedido"
@@ -118,8 +118,7 @@
                         <Label Text="Observaciones:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
                     </StackLayout>
 
-                    <Entry x:Name="comentariopedidotarjeta_input" 
-                           Placeholder="Observaciones" />
+                    <Entry x:Name="comentariopedidotarjeta_input" HeightRequest="100" />
 
                     <StackLayout Orientation="Horizontal" Margin="5,10,5,15">
                         <Label Text="Cantidad a Debitar:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
