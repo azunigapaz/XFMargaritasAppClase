@@ -97,14 +97,19 @@
                                 WidthRequest="150"
                                 Margin="0,-30,0,0" />
 
-                    <Button x:Name="btnaudioreferencia"
-                                Text="Audio"
-                                TextColor="#FFF"
-                                BackgroundColor="#000"
+                    <TimePicker x:Name="timehoraentrega"
                                 WidthRequest="150"
-                                Margin="0,-30,0,0"
-                                Clicked="btnaudioreferencia_Clicked" />
+                                Margin="0,-30,0,0" />
 
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical" Padding="0" HorizontalOptions="Fill">
+                    <Button x:Name="btnaudioreferencia"
+                            Text="Audio"
+                            TextColor="#FFF"
+                            BackgroundColor="#000"
+                            Margin="30,0,30,0"
+                            Clicked="btnaudioreferencia_Clicked" />
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,-5,0,-10">
