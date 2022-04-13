@@ -70,13 +70,19 @@
                 </RadioButton>
 
                 <StackLayout x:Name="layoutefectivo" Margin="0,20,-160,0" HorizontalOptions="CenterAndExpand" Grid.Row="1" WidthRequest="300" IsVisible="False">
-                    <StackLayout Orientation="Horizontal" Margin="3,0,0,-3">
+                    <StackLayout Orientation="Horizontal" Margin="3,0,0,-10">
                         <Label Text="Cantidad a Pagar:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
                     </StackLayout>
                     
                     <Entry x:Name="cantidadefectivo_input" 
                            Placeholder="Cantidad"
-                           Keyboard="Numeric"/>
+                           Keyboard="Numeric" />
+
+                    <StackLayout Orientation="Horizontal" Margin="3,5,0,-10">
+                        <Label Text="Observaciones:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
+                    </StackLayout>
+                    
+                    <Entry x:Name="comentariopedidoefectivo_input" />
 
                     <Button x:Name="btnrealizarpagoefectivo"
                             Text="Realizar Pedido"
@@ -87,6 +93,10 @@
                 </StackLayout>
 
                 <StackLayout x:Name="layouttarjeta" Margin="0,20,-160,0" HorizontalOptions="CenterAndExpand" Grid.Row="1" WidthRequest="300" IsVisible="False">
+                    <StackLayout Orientation="Horizontal" Margin="3,0,0,-10">
+                        <Label Text="Seleccione una Tarjeta:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
+                    </StackLayout>
+                    
                     <StackLayout Orientation="Horizontal">
                         <Picker x:Name="selecttarjeta"
                                 Title="Seleccione una Tarjeta"
@@ -104,7 +114,14 @@
                                 Clicked="btnagregartarjetaorden_Clicked"/>
                     </StackLayout>
 
-                    <StackLayout Orientation="Horizontal" Margin="5,10,5,10">
+                    <StackLayout Orientation="Horizontal" Margin="3,0,0,-10">
+                        <Label Text="Observaciones:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
+                    </StackLayout>
+
+                    <Entry x:Name="comentariopedidotarjeta_input" 
+                           Placeholder="Observaciones" />
+
+                    <StackLayout Orientation="Horizontal" Margin="5,10,5,15">
                         <Label Text="Cantidad a Debitar:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
                         <Label x:Name="lblcantdebitar" Text="L. 00.00" TextColor="#000" FontSize="16" FontAttributes="None" HorizontalOptions="EndAndExpand" />
                     </StackLayout>
