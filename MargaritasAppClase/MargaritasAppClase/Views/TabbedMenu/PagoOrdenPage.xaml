@@ -101,7 +101,9 @@
                         <Picker x:Name="selecttarjeta"
                                 Title="Seleccione una Tarjeta"
                                 WidthRequest="250"
-                                Margin="0">
+                                Margin="0"
+                                SelectedIndexChanged="selecttarjeta_SelectedIndexChanged"
+                                >
                         </Picker>
 
                         <Button x:Name="btnagregartarjetaorden" 
