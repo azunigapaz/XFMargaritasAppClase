@@ -95,11 +95,15 @@
 
                     <DatePicker x:Name="datefechadeentrega"
                                 WidthRequest="150"
-                                Margin="0,-30,0,0" />
+                                Margin="0,-30,0,0" 
+                                DateSelected="datefechadeentrega_DateSelected"
+                                />
 
                     <TimePicker x:Name="timehoraentrega"
                                 WidthRequest="150"
-                                Margin="0,-30,0,0" />
+                                Margin="0,-30,0,0" 
+                                
+                                />
 
                 </StackLayout>
 
@@ -116,7 +120,7 @@
                     <Picker x:Name="selectubicacion"
                                 Title="Seleccione una Ubicacion"
                                 WidthRequest="250"
-                                Margin="8,0,0,0"
+                                Margin="8,0,0,0"                                
                                 SelectedIndexChanged="selectubicacion_SelectedIndexChanged">
                     </Picker>
 
