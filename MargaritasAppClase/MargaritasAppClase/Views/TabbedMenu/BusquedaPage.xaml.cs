@@ -28,5 +28,10 @@ namespace MargaritasAppClase.Views.TabbedMenu
         {
             await Navigation.PushAsync(new DetallePedidoPage());
         }
+
+        private async void btnevaluarservicio_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EvaluacionPage());
+        }
     }
 }

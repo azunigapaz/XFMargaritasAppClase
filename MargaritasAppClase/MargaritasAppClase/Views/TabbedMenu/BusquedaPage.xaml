@@ -81,6 +81,15 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <StackLayout BackgroundColor="#FFF">
+                <Button x:Name="btnevaluarservicio"
+                        Text="Evaluar Servicio"
+                        TextColor="#000"
+                        BackgroundColor="#FDD835"
+                        Margin="10,0,10,10" 
+                        Clicked="btnevaluarservicio_Clicked"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
