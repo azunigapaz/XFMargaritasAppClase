@@ -12,21 +12,16 @@ using Xamarin.Forms.Xaml;
 namespace MargaritasAppClase.Views.TabbedMenu
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BusquedaPage : ContentPage
+    public partial class DetallePedidoPage : ContentPage
     {
-        public BusquedaPage()
+        public DetallePedidoPage()
         {
             InitializeComponent();
         }
 
-        private void btnubicacionpedido_Clicked(object sender, EventArgs e)
+        private void btnescucharaudioreferencia_Clicked(object sender, EventArgs e)
         {
 
-        }
-
-        private async void btnverdetallepedido_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new DetallePedidoPage());
         }
     }
 }

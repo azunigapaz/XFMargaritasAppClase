@@ -7,7 +7,7 @@
             BarBackground="#FE5CA6" BarTextColor="#FFFFFF" SelectedTabColor="#FFFFFF" UnselectedTabColor="#FFFFFF">
     
     <locals:MenuPage Title="Home" IconImageSource="home_icono"/>
-    <locals:BusquedaPage Title="Search" IconImageSource="buscar_icono"/>
+    <locals:BusquedaPage Title="Pedidos" IconImageSource="carritohistorial_icono"/>
     <locals:CarritoPage Title="Carrito" IconImageSource="carrito_icono"/>
     <locals:PerfilPage Title="Perfil" IconImageSource="perfil_icono"/>
 
