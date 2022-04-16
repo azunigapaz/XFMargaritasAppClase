@@ -67,6 +67,7 @@ namespace MargaritasAppClase.Views.TabbedMenu
                         titular_input.Text = "";
                         cvv_input.Text = "";
                         numtctd_input.Focus();
+                        await Navigation.PopAsync();
                     }
 
                     else

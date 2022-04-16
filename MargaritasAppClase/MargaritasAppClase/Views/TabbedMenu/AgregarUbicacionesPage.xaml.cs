@@ -111,6 +111,7 @@ namespace MargaritasAppClase.Views.TabbedMenu
                         imageToSave = null;
                         imgubicacion.Source = null;
                         descripcion_input.Focus();
+                        await Navigation.PopAsync();
                     }
 
                     else

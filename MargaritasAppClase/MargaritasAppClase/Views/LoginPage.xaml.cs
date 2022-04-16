@@ -21,7 +21,7 @@ namespace MargaritasAppClase.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        string pdCorreo = "";
+        string pdCorreo = "", tipoUsuario = "";        
         public LoginPage()
         {
             InitializeComponent();
@@ -35,12 +35,25 @@ namespace MargaritasAppClase.Views
 
             if (Application.Current.Properties.ContainsKey("correo"))
             {
-                await Navigation.PushAsync(new Views.TabbedMenu.MainTabbedPage());
-                Navigation.RemovePage(Navigation.NavigationStack[0]);
-                //int numPage = Navigation.NavigationStack.Count;
-                //await DisplayAlert("Mensaje", numPage.ToString(), "Ok");
+                if (Application.Current.Properties.ContainsKey("tipousuario"))
+                {
+                    string pdTipoUsuario = Application.Current.Properties["tipousuario"].ToString();
+                    if (pdTipoUsuario == "2")
+                    {
+                        await Navigation.PushAsync(new Views.EntregadorMenu.MenuEntregadorTabbedPage());
+                        Navigation.RemovePage(Navigation.NavigationStack[0]);
+                        //int numPage = Navigation.NavigationStack.Count;
+                        //await DisplayAlert("Mensaje", numPage.ToString(), "Ok");
+                    }
+                    else
+                    {
+                        await Navigation.PushAsync(new Views.TabbedMenu.MainTabbedPage());
+                        Navigation.RemovePage(Navigation.NavigationStack[0]);
+                        //int numPage = Navigation.NavigationStack.Count;
+                        //await DisplayAlert("Mensaje", numPage.ToString(), "Ok");
+                    }
+                }
             }
-
         }
 
         private async void btniniciarsesion_Clicked(object sender, EventArgs e)
@@ -71,33 +84,56 @@ namespace MargaritasAppClase.Views
                     String jsonx = response.Content.ReadAsStringAsync().Result;
                     JObject jsons = JObject.Parse(jsonx);
                     String Mensaje = jsons["success"].ToString();
+                    String mensajeTipoUsuario = jsons["TipoUsuario"].ToString();
 
                     //await DisplayAlert("Success", "Datos guardados correctamente", "Ok");
-                    
-                   
+
+
                     if (Mensaje == "true")
                     {
 
-                        pdCorreo = correo_input.Text;                        
+                        pdCorreo = correo_input.Text;
+                        tipoUsuario = mensajeTipoUsuario;
 
-                        Application.Current.Properties["correo"] = pdCorreo;                        
+                        Application.Current.Properties["correo"] = pdCorreo;
+                        Application.Current.Properties["tipousuario"] = tipoUsuario;
+
                         await Application.Current.SavePropertiesAsync();
-                        
-                        await Navigation.PushAsync(new Views.TabbedMenu.MainTabbedPage());
 
-                        //envia Push Notificacion
-                        var notificacion = new NotificationRequest
+                        if (mensajeTipoUsuario == "2")
                         {
-                            BadgeNumber = 1,
-                            Title = "Te extramos",
-                            Description = "Tenemos muchas promociones para ti",
-                            ReturningData = "Dummy Data",
-                            NotificationId = 1337,
 
-                        };
+                            await Navigation.PushAsync(new Views.EntregadorMenu.MenuEntregadorTabbedPage());
+                         
+                            var notificacion = new NotificationRequest
+                            {
+                                BadgeNumber = 1,
+                                Title = "Pedidos Pendientes",
+                                Description = "Por favor, dar seguimiento a sus pedidos",
+                                ReturningData = "Dummy Data",
+                                NotificationId = 1337,
 
-                        await NotificationCenter.Current.Show(notificacion);
-                        //Finaliza el Push de Notificacion
+                            };
+
+                            await NotificationCenter.Current.Show(notificacion);
+                        }
+                        else
+                        {
+                            await Navigation.PushAsync(new Views.TabbedMenu.MainTabbedPage());
+
+                            //envia Push Notificacion
+                            var notificacion = new NotificationRequest
+                            {
+                                BadgeNumber = 1,
+                                Title = "Te extramos",
+                                Description = "Tenemos muchas promociones para ti",
+                                ReturningData = "Dummy Data",
+                                NotificationId = 1337,
+
+                            };
+
+                            await NotificationCenter.Current.Show(notificacion);
+                        }
                     }
                     else
                     {

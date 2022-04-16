@@ -22,9 +22,11 @@ namespace MargaritasAppClase.Views.EntregadorMenu
             await Navigation.PushAsync(new ActualizarPerfilEntregadorPage());
         }
 
-        private void btncerrarsesionrepartidor_Clicked(object sender, EventArgs e)
+        private async void btncerrarsesionrepartidor_Clicked(object sender, EventArgs e)
         {
-
+            Application.Current.Properties.Remove("correo");
+            await Navigation.PushAsync(new LoginPage());
+            Navigation.RemovePage(Navigation.NavigationStack[0]);
         }
     }
 }

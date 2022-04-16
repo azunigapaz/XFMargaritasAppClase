@@ -149,6 +149,7 @@ namespace MargaritasAppClase.Views.TabbedMenu
                     JObject jsons = JObject.Parse(jsonx);
                     String Mensaje = jsons["msg"].ToString();
                     await DisplayAlert("Success", "Orden registrada", "Ok");
+                    await Navigation.PopAsync();
 
                 }
                 else
@@ -187,7 +188,7 @@ namespace MargaritasAppClase.Views.TabbedMenu
 
                     ID_Cliente = correo,
                     ID_TipoPago = "2",
-                    ID_TipoEntrega = "2",
+                    ID_TipoEntrega = tarjetaId,
                     FH_Pedido = fechaPedido,
                     FH_Entrega = fechaEntrega,
                     ID_Ubicacion = idUbicacion,
@@ -215,7 +216,7 @@ namespace MargaritasAppClase.Views.TabbedMenu
                     JObject jsons = JObject.Parse(jsonx);
                     String Mensaje = jsons["msg"].ToString();
                     await DisplayAlert("Success", "Orden registrada", "Ok");
-
+                    await Navigation.PopAsync();
                 }
                 else
                 {

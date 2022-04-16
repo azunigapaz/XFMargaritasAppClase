@@ -277,66 +277,75 @@ namespace MargaritasAppClase.Views.TabbedMenu
 
         private async void GetCarritoList()
         {
-            var AccesoInternet = Connectivity.NetworkAccess;
-
-            if (AccesoInternet == NetworkAccess.Internet)
+            try
             {
-                sl.IsVisible = true;
-                spinner.IsRunning = true;
+                var AccesoInternet = Connectivity.NetworkAccess;
 
-                listacarrito = new List<CarritoListModel>();
-                listacarrito = await ProductsApiController.ControllerObtenerListaCarrito(correo);
-
-                if (listacarrito.Count > 0)
+                if (AccesoInternet == NetworkAccess.Internet)
                 {
-                    listview_carritoproductos.ItemsSource = null;
-                    listview_carritoproductos.ItemsSource = listacarrito;
+                    sl.IsVisible = true;
+                    spinner.IsRunning = true;
 
-                    double subtotal = 0, impuesto = 0, total = 0;
+                    listacarrito = new List<CarritoListModel>();
+                    listacarrito = await ProductsApiController.ControllerObtenerListaCarrito(correo);
 
-                    foreach (var v in listacarrito)
+                    if (listacarrito.Count > 0)
                     {
-                        subtotal = subtotal + Convert.ToDouble(v.Cantidad.ToString()) * Convert.ToDouble(v.Precio.ToString());
+                        listview_carritoproductos.ItemsSource = null;
+                        listview_carritoproductos.ItemsSource = listacarrito;
+
+                        double subtotal = 0, impuesto = 0, total = 0;
+
+                        foreach (var v in listacarrito)
+                        {
+                            subtotal = subtotal + Convert.ToDouble(v.Cantidad.ToString()) * Convert.ToDouble(v.Precio.ToString());
+                        }
+                        impuesto = subtotal * .15;
+                        total = subtotal + impuesto;
+
+                        lblsubtotal.Text = "L. " + subtotal.ToString("#,#.00");
+                        lblisv.Text = "L. " + impuesto.ToString("#,#.00");
+                        lbltotalapagar.Text = "L. " + total.ToString("#,#.00");
                     }
-                    impuesto = subtotal * .15;
-                    total = subtotal + impuesto;
-
-                    lblsubtotal.Text = "L. " + subtotal.ToString("#,#.00");
-                    lblisv.Text = "L. " + impuesto.ToString("#,#.00");
-                    lbltotalapagar.Text = "L. " + total.ToString("#,#.00");
-                }
-                else
-                {
-                    await DisplayAlert("Notificación", $"Lista vacía, ingrese datos", "Ok");
-                }
-
-                List<UbicacionesListModel> listaubicaciones = new List<UbicacionesListModel>();
-                listaubicaciones = await ProductsApiController.ControllerObtenerListaUbicaciones(correo);
-
-                if (listaubicaciones.Count > 0)
-                {
-
-                    selectubicacion.ItemsSource = null;
-                    //selectubicacion.ItemsSource = listacarrito;                    
-
-                    var pickerList = new List<String>();
-
-                    foreach (var v in listaubicaciones)
+                    else
                     {
-                        pickerList.Add(v.ID_Ubicacion.ToString() + "-" + v.Direccion.ToString());
+                        await DisplayAlert("Notificación", $"Lista vacía, ingrese datos", "Ok");
                     }
 
-                    selectubicacion.ItemsSource = pickerList;
-                    selectubicacion.SelectedIndex = 0;
-                }
-                else
-                {
-                    await DisplayAlert("Notificación", $"Lista vacía, ingrese datos", "Ok");
-                }
+                    List<UbicacionesListModel> listaubicaciones = new List<UbicacionesListModel>();
+                    listaubicaciones = await ProductsApiController.ControllerObtenerListaUbicaciones(correo);
 
+                    if (listaubicaciones.Count > 0)
+                    {
+
+                        selectubicacion.ItemsSource = null;
+                        //selectubicacion.ItemsSource = listacarrito;                    
+
+                        var pickerList = new List<String>();
+
+                        foreach (var v in listaubicaciones)
+                        {
+                            pickerList.Add(v.ID_Ubicacion.ToString() + "-" + v.Direccion.ToString());
+                        }
+
+                        selectubicacion.ItemsSource = pickerList;
+                        selectubicacion.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Notificación", $"Lista vacía, ingrese datos", "Ok");
+                    }
+
+                    sl.IsVisible = false;
+                    spinner.IsRunning = false;
+                }
+            }
+            catch (Exception ex)
+            {
                 sl.IsVisible = false;
                 spinner.IsRunning = false;
             }
+
         }
 
         private void datefechadeentrega_DateSelected(object sender, DateChangedEventArgs e)
@@ -363,9 +372,9 @@ namespace MargaritasAppClase.Views.TabbedMenu
             }
         }
 
-        private void btnagregarubicacioncarrito_Clicked(object sender, EventArgs e)
+        private async void btnagregarubicacioncarrito_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new ListaUbicacionesPage());
         }
 
         private async void btnprocesarorden_Clicked(object sender, EventArgs e)
