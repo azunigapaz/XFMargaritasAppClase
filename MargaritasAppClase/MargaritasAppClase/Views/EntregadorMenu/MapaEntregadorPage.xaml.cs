@@ -42,6 +42,13 @@ namespace MargaritasAppClase.Views.EntregadorMenu
 
         }
 
+        private async void btnMejorRuta_Clicked(object sender, EventArgs e)
+        {
+            var options = new MapLaunchOptions { NavigationMode = NavigationMode.Driving };
+            var location = new Location(lat, lon);
+            await Xamarin.Essentials.Map.OpenAsync(location, options);
+        }
+
         private async void irMapaEntregador() 
         {
             
