@@ -187,12 +187,12 @@ namespace MargaritasAppClase.Views.TabbedMenu
                 {
 
                     ID_Cliente = correo,
-                    ID_TipoPago = "2",
-                    ID_TipoEntrega = tarjetaId,
+                    ID_TipoPago = tarjetaId,
+                    ID_TipoEntrega = "2",
                     FH_Pedido = fechaPedido,
                     FH_Entrega = fechaEntrega,
                     ID_Ubicacion = idUbicacion,
-                    Comentarios = comentariopedidoefectivo_input.Text,
+                    Comentarios = comentariopedidotarjeta_input.Text,
                     Audio = audio,
                     Estado = "1",
                     ID_Entregador = "",

@@ -277,71 +277,64 @@ namespace MargaritasAppClase.Views.TabbedMenu
 
         private async void GetCarritoList()
         {
-            try
-            {
-                var AccesoInternet = Connectivity.NetworkAccess;
+            var AccesoInternet = Connectivity.NetworkAccess;
 
-                if (AccesoInternet == NetworkAccess.Internet)
+            if (AccesoInternet == NetworkAccess.Internet)
+            {
+                sl.IsVisible = true;
+                spinner.IsRunning = true;
+
+                listacarrito = new List<CarritoListModel>();
+                listacarrito = await ProductsApiController.ControllerObtenerListaCarrito(correo);
+
+                listview_carritoproductos.ItemsSource = null;
+                double subtotal = 0, impuesto = 0, total = 0;
+
+                if (listacarrito.Count > 0)
                 {
-                    sl.IsVisible = true;
-                    spinner.IsRunning = true;
+                    //listview_carritoproductos.ItemsSource = null;
+                    listview_carritoproductos.ItemsSource = listacarrito;                        
 
-                    listacarrito = new List<CarritoListModel>();
-                    listacarrito = await ProductsApiController.ControllerObtenerListaCarrito(correo);
-
-                    if (listacarrito.Count > 0)
+                    foreach (var v in listacarrito)
                     {
-                        listview_carritoproductos.ItemsSource = null;
-                        listview_carritoproductos.ItemsSource = listacarrito;
-
-                        double subtotal = 0, impuesto = 0, total = 0;
-
-                        foreach (var v in listacarrito)
-                        {
-                            subtotal = subtotal + Convert.ToDouble(v.Cantidad.ToString()) * Convert.ToDouble(v.Precio.ToString());
-                        }
-                        impuesto = subtotal * .15;
-                        total = subtotal + impuesto;
-
-                        lblsubtotal.Text = "L. " + subtotal.ToString("#,#.00");
-                        lblisv.Text = "L. " + impuesto.ToString("#,#.00");
-                        lbltotalapagar.Text = "L. " + total.ToString("#,#.00");
+                        subtotal = subtotal + Convert.ToDouble(v.Cantidad.ToString()) * Convert.ToDouble(v.Precio.ToString());
                     }
-                    else
-                    {
-                        await DisplayAlert("Notificación", $"Lista vacía, ingrese datos", "Ok");
-                    }
-
-                    List<UbicacionesListModel> listaubicaciones = new List<UbicacionesListModel>();
-                    listaubicaciones = await ProductsApiController.ControllerObtenerListaUbicaciones(correo);
-
-                    if (listaubicaciones.Count > 0)
-                    {
-
-                        selectubicacion.ItemsSource = null;
-                        //selectubicacion.ItemsSource = listacarrito;                    
-
-                        var pickerList = new List<String>();
-
-                        foreach (var v in listaubicaciones)
-                        {
-                            pickerList.Add(v.ID_Ubicacion.ToString() + "-" + v.Direccion.ToString());
-                        }
-
-                        selectubicacion.ItemsSource = pickerList;
-                        selectubicacion.SelectedIndex = 0;
-                    }
-                    else
-                    {
-                        await DisplayAlert("Notificación", $"Lista vacía, ingrese datos", "Ok");
-                    }
-
-                    sl.IsVisible = false;
-                    spinner.IsRunning = false;
+                    impuesto = subtotal * .15;
+                    total = subtotal + impuesto;
                 }
-            }
-            catch (Exception ex)
-            {
+                else
+                {
+                    await DisplayAlert("Notificación", $"Lista vacía, ingrese datos", "Ok");
+                }
+
+                lblsubtotal.Text = "L. " + subtotal.ToString("#,#.00");
+                lblisv.Text = "L. " + impuesto.ToString("#,#.00");
+                lbltotalapagar.Text = "L. " + total.ToString("#,#.00");
+
+                List<UbicacionesListModel> listaubicaciones = new List<UbicacionesListModel>();
+                listaubicaciones = await ProductsApiController.ControllerObtenerListaUbicaciones(correo);
+
+                if (listaubicaciones.Count > 0)
+                {
+
+                    selectubicacion.ItemsSource = null;
+                    //selectubicacion.ItemsSource = listacarrito;                    
+
+                    var pickerList = new List<String>();
+
+                    foreach (var v in listaubicaciones)
+                    {
+                        pickerList.Add(v.ID_Ubicacion.ToString() + "-" + v.Direccion.ToString());
+                    }
+
+                    selectubicacion.ItemsSource = pickerList;
+                    selectubicacion.SelectedIndex = 0;
+                }
+                else
+                {
+                    await DisplayAlert("Notificación", $"Lista vacía, ingrese datos", "Ok");
+                }
+
                 sl.IsVisible = false;
                 spinner.IsRunning = false;
             }
