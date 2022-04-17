@@ -81,7 +81,11 @@ namespace MargaritasAppClase.Views.EntregadorMenu
 
         private async void btnverubiacionorden_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new MapaEntregadorPage());
+
+            var item = (sender as Button).BindingContext as EntregadorListPedidosModel;
+            double lat = Convert.ToDouble(item.latitud.ToString());
+            double lon = Convert.ToDouble(item.longitud.ToString());
+            await Navigation.PushAsync(new MapaEntregadorPage(lat, lon));
         }
 
         private async void btnverperfilcliente_Clicked(object sender, EventArgs e)

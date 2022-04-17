@@ -11,29 +11,46 @@ using Plugin.Geolocator;
 using System.Diagnostics;
 using static Xamarin.Essentials.Permissions;
 using Xamarin.Essentials;
+using MargaritasAppClase.Controller;
 
 namespace MargaritasAppClase.Views.EntregadorMenu
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MapaEntregadorPage : ContentPage
     {
-        public MapaEntregadorPage()
+        double lat, lon;
+        public MapaEntregadorPage(double lat, double lon)
         {            
-            InitializeComponent();            
-          
+            InitializeComponent();
+            this.lat = lat;
+            this.lon = lon;
         }
 
         protected async override void OnAppearing() 
         {
             base.OnAppearing();
-            double Latitud = Convert.ToDouble("15.88555");
-            double Longitud = Convert.ToDouble("-88.025441");
+            irMapaEntregador();
+        }
 
-            Pin pin = new Pin 
+        private void Localizacion_PositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
+        {
+
+            double Latituda = Convert.ToDouble("15.88555");
+            double Longituda = Convert.ToDouble("-88.025441");
+            var mapac = new Position(Latituda, Longituda);
+            MapaEntregador.MoveToRegion(new MapSpan(mapac, 2, 2));
+
+        }
+
+        private async void irMapaEntregador() 
+        {
+            
+
+            Pin pin = new Pin
             {
                 Label = "Ubicacion del pedido",
                 Type = PinType.Place,
-                Position = new Position(Latitud, Longitud)
+                Position = new Position(lat, lon)
             };
 
             MapaEntregador.Pins.Add(pin);
@@ -45,7 +62,7 @@ namespace MargaritasAppClase.Views.EntregadorMenu
                 location = await Geolocation.GetLastKnownLocationAsync();
             }
 
-            MapaEntregador.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(Latitud, Longitud), Distance.FromMeters(200)));
+            MapaEntregador.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(lat, lon), Distance.FromMeters(200)));
 
             var localizacion = CrossGeolocator.Current;
 
@@ -60,30 +77,18 @@ namespace MargaritasAppClase.Views.EntregadorMenu
                 }
 
                 var posicion = await localizacion.GetPositionAsync();
-                var mapac = new Position(Latitud, Longitud);
+                var mapac = new Position(lat, lon);
                 MapaEntregador.MoveToRegion(MapSpan.FromCenterAndRadius(mapac, Distance.FromMeters(200)));
 
             }
-            else 
+            else
             {
                 await localizacion.GetLastKnownLocationAsync();
                 var posicion = await localizacion.GetPositionAsync();
-                var mapac = new Position(Latitud, Longitud);
-                MapaEntregador.MoveToRegion(new MapSpan(mapac,2,2));
-            }           
+                var mapac = new Position(lat, lon);
+                MapaEntregador.MoveToRegion(new MapSpan(mapac, 2, 2));
+            }
         }
-
-        private void Localizacion_PositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
-        {
-
-            double Latituda = Convert.ToDouble("15.88555");
-            double Longituda = Convert.ToDouble("-88.025441");
-            var mapac = new Position(Latituda, Longituda);
-            MapaEntregador.MoveToRegion(new MapSpan(mapac, 2, 2));
-
-        }
-
-
 
 
     }
