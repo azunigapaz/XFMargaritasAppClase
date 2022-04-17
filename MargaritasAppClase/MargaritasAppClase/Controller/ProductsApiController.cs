@@ -230,17 +230,23 @@ namespace MargaritasAppClase.Controller
 
                     if (contenido.Length > 28)
                     {
-                        foreach (var item in dyn.items)
+                        foreach (var item in dyn.Pedidos)
                         {
                             listaordenesentregador.Add(new EntregadorListPedidosModel(
-                                            item.id_pedido.ToString(),
-                                            item.id_cliente.ToString(), 
-                                            item.fh_entrega.ToString(),
-                                            item.id_ubicacion.ToString(),
-                                            item.estado.ToString(),
-                                            item.id_entregador.ToString(),
-                                            item.latitudped.ToString(), 
-                                            item.longitudped.ToString()
+                                            item.ID_Pedido.ToString(),
+                                            item.ID_Cliente.ToString(), 
+                                            item.Ult_Cor_Pedido.ToString(),
+                                            item.FH_Pedido.ToString(),
+                                            item.FH_Entrega.ToString(),
+                                            item.Comentarios.ToString(),
+                                            item.Audio.ToString(),
+                                            item.TipoPago.ToString(),
+                                            item.TipoEntrega.ToString(),
+                                            item.Latitud.ToString(),
+                                            item.Longitud.ToString(),
+                                            item.Direccion.ToString(),
+                                            item.LatitudPed.ToString(), 
+                                            item.LongitudPed.ToString()
                                             ));
                         }
                     }
