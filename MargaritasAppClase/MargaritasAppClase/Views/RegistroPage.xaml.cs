@@ -142,7 +142,7 @@ namespace MargaritasAppClase.Views
                             body += "</HEAD><BODY><DIV><IMG src='https://us.123rf.com/450wm/tuktukpranee/tuktukpranee1905/tuktukpranee190500023/127432966-suave-desenfoque-de-fondo-hermosa-cubierta-de-flor-de-flor-de-cerezo-rosa-sakura-con-nieve-en-plena-.jpg?ver=6' width='300' height='100'><br><br>"; 
                             
                             //enlace url para cambiar codigo
-                            body += "<a href='https://www.uth.hn' Color='#FC78D8'>Confirma tus credenciales haciendo clic aqui!</a>"; 
+                            body += "<a href='https://webfacturacesar.000webhostapp.com/Margarita/Confirmacion.php' Color='#FC78D8'>Confirma tus credenciales haciendo clic aqui!</a>";
                             body += "</DIV></BODY></HTML>";
 
                             ContentType mimeType = new System.Net.Mime.ContentType("text/html");
