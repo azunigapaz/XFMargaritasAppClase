@@ -13,19 +13,19 @@
 
                 <StackLayout Orientation="Horizontal" Margin="15,20,15,10">
                     <Label Text="Nombre:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
-                    <Label x:Name="lblnombrecliente" Text="Jose Antonio" TextColor="#000" FontSize="16" FontAttributes="None" HorizontalOptions="EndAndExpand" />
+                    <Label x:Name="lblnombrecliente" Text="" TextColor="#000" FontSize="16" FontAttributes="None" HorizontalOptions="EndAndExpand" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" Margin="15,0,15,10">
                     <Label Text="Apellido:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
-                    <Label x:Name="lblapellidocliente" Text="Vigil Gomez" TextColor="#000" FontSize="16" FontAttributes="None" HorizontalOptions="EndAndExpand" />
+                    <Label x:Name="lblapellidocliente"  Text="" TextColor="#000" FontSize="16" FontAttributes="None" HorizontalOptions="EndAndExpand" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" Margin="15,0,15,10">
                     <Label Text="Telefono: " TextColor="#000" FontSize="16" FontAttributes="Bold" />
-                    <Label x:Name="lbltelefonocliente" Text="+504 8968-2102" TextColor="#000" FontSize="16" FontAttributes="None" HorizontalOptions="EndAndExpand" />
+                    <Label x:Name="lbltelefonocliente" Text="" TextColor="#000" FontSize="16" FontAttributes="None" HorizontalOptions="EndAndExpand" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" Margin="15,0,15,10">
                     <Label Text="Correo: " TextColor="#000" FontSize="16" FontAttributes="Bold" />
-                    <Label x:Name="lblcorreocliente" Text="jvigil504@gmail.com" TextColor="#000" FontSize="16" FontAttributes="None" HorizontalOptions="EndAndExpand" />
+                    <Label x:Name="lblcorreocliente" Text="" TextColor="#000" FontSize="16" FontAttributes="None" HorizontalOptions="EndAndExpand" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>

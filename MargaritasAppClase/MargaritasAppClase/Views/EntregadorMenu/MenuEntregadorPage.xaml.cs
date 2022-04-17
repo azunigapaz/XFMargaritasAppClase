@@ -1,8 +1,13 @@
 ﻿using MargaritasAppClase.Controller;
 using MargaritasAppClase.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -14,6 +19,11 @@ namespace MargaritasAppClase.Views.EntregadorMenu
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MenuEntregadorPage : ContentPage
     {
+
+        byte[] newBytes = null;
+        string id = "", nombre = "", apellido = "", telefono = "", foto = "";
+
+
         List<EntregadorListPedidosModel> listaordenesrepartidor = null;
 
         string correo = Application.Current.Properties["correo"].ToString();
@@ -90,7 +100,12 @@ namespace MargaritasAppClase.Views.EntregadorMenu
 
         private async void btnverperfilcliente_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new VerPerfilClientePage());
+            var item = (sender as Button).BindingContext as EntregadorListPedidosModel;
+            string correoClientePedido = item.id_cliente.ToString();
+            await Navigation.PushAsync(new VerPerfilClientePage(correoClientePedido));
         }
+
+       
+
     }
 }
