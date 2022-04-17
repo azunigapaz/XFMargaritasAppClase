@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.margaritasappclase" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
 	<application android:label="MargaritasAppClase.Android" android:theme="@style/MainTheme" android:icon="@mipmap/ic_launcher">
+		
 		<!--<provider android:name="android.support.v4.content.FileProvider"
 						android:authorities="${applicationId}.fileprovider"
 						android:exported="false"
@@ -18,12 +19,16 @@
 			</intent-filter>
 		</receiver>
 		<meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@android:drawable/ic_menu_save" />
+		
 		<provider android:name="androidx.core.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
 			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
 		</provider>
+		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCpPC5phSpSB4pU_E5zeoO_hRpgOoM6k5A"/>
+		<uses-library android:name="org.apache.http.legacy" android:required="false"/>
 	</application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
