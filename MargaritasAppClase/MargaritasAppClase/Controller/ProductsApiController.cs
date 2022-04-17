@@ -92,42 +92,48 @@ namespace MargaritasAppClase.Controller
 
                     if (contenido.Length > 28)
                     {
-
-                        foreach (var item in dyn.Carrito)
+                        if(dyn.msg == "Error")
                         {
-                            string idCarrito = item.ID_Carrito.ToString(), idCliente = item.ID_Cliente.ToString(), fecha = item.fecha.ToString(), subTotal = item.SubTotal.ToString(), isv = item.ISV.ToString(), total = item.Total.ToString();
 
-                            foreach (var itemdetalle in item.DetalleCarrito)
+                        }
+                        else
+                        {
+                            foreach (var item in dyn.Carrito)
                             {
-                                string idCarritoDetalle = itemdetalle["ID_CarritoDet"].ToString();
-                                string fkIdCarrito = itemdetalle.ID_Carrito.ToString();
-                                string codigoProducto = itemdetalle.ID_Producto.ToString();
-                                string descProducto = itemdetalle.desc_prod.ToString(), img64 = itemdetalle.foto.ToString(), cantidad = itemdetalle.Cantidad.ToString(), precio = itemdetalle.Precio.ToString(), totalDetalle = itemdetalle.Total.ToString();
+                                string idCarrito = item.ID_Carrito.ToString(), idCliente = item.ID_Cliente.ToString(), fecha = item.fecha.ToString(), subTotal = item.SubTotal.ToString(), isv = item.ISV.ToString(), total = item.Total.ToString();
 
-                                newBytes = Convert.FromBase64String(img64);
-                                var stream = new MemoryStream(newBytes);
+                                foreach (var itemdetalle in item.DetalleCarrito)
+                                {
+                                    string idCarritoDetalle = itemdetalle["ID_CarritoDet"].ToString();
+                                    string fkIdCarrito = itemdetalle.ID_Carrito.ToString();
+                                    string codigoProducto = itemdetalle.ID_Producto.ToString();
+                                    string descProducto = itemdetalle.desc_prod.ToString(), img64 = itemdetalle.foto.ToString(), cantidad = itemdetalle.Cantidad.ToString(), precio = itemdetalle.Precio.ToString(), totalDetalle = itemdetalle.Total.ToString();
+
+                                    newBytes = Convert.FromBase64String(img64);
+                                    var stream = new MemoryStream(newBytes);
 
 
-                                listacarrito.Add(new CarritoListModel(
-                                                idCarrito,
-                                                idCliente,
-                                                fecha,
-                                                subTotal,
-                                                isv,
-                                                total,
-                                                idCarritoDetalle,
-                                                fkIdCarrito,
-                                                codigoProducto,
-                                                descProducto, 
-                                                img64,
-                                                ImageSource.FromStream(() => stream),
-                                                cantidad,
-                                                precio,
-                                                totalDetalle
-                                                ));
+                                    listacarrito.Add(new CarritoListModel(
+                                                    idCarrito,
+                                                    idCliente,
+                                                    fecha,
+                                                    subTotal,
+                                                    isv,
+                                                    total,
+                                                    idCarritoDetalle,
+                                                    fkIdCarrito,
+                                                    codigoProducto,
+                                                    descProducto,
+                                                    img64,
+                                                    ImageSource.FromStream(() => stream),
+                                                    cantidad,
+                                                    precio,
+                                                    totalDetalle
+                                                    ));
+
+                                }
 
                             }
-
                         }
                     }
                 }
@@ -254,6 +260,48 @@ namespace MargaritasAppClase.Controller
                 }
             }
             return listaordenesentregador;
+        }
+
+        public async static Task<List<ClienteListaPedidosModel>> ControllerObtenerListaOrdenesCliente(string correo)
+        {
+            List<ClienteListaPedidosModel> listaordenescliente = new List<ClienteListaPedidosModel>();
+
+            using (HttpClient cliente = new HttpClient())
+            {
+                var respuesta = await cliente.GetAsync("https://webfacturacesar.000webhostapp.com/Margarita/methods/orders/?mail=" + correo);
+
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    string contenido = respuesta.Content.ReadAsStringAsync().Result.ToString();
+
+                    dynamic dyn = JsonConvert.DeserializeObject(contenido);
+
+                    if (contenido.Length > 28)
+                    {
+                        foreach (var item in dyn.Pedidos)
+                        {
+                            listaordenescliente.Add(new ClienteListaPedidosModel(
+                                            item.ID_Pedido.ToString(),
+                                            item.ID_Cliente.ToString(),
+                                            item.Ult_Cor_Pedido.ToString(),
+                                            item.FH_Pedido.ToString(),
+                                            item.FH_Entrega.ToString(),
+                                            item.Comentarios.ToString(),
+                                            item.Audio.ToString(),
+                                            item.TipoPago.ToString(),
+                                            item.TipoEntrega.ToString(),
+                                            item.Latitud.ToString(),
+                                            item.Longitud.ToString(),
+                                            item.Direccion.ToString(),
+                                            item.LatitudPed.ToString(),
+                                            item.LongitudPed.ToString()
+                                            ));
+                        }
+                    }
+
+                }
+            }
+            return listaordenescliente;
         }
 
     }
