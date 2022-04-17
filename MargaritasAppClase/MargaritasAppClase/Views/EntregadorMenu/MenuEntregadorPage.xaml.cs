@@ -63,9 +63,14 @@ namespace MargaritasAppClase.Views.EntregadorMenu
             }
         }
 
-        private void btnverorden_Clicked(object sender, EventArgs e)
+        private async void btnverorden_Clicked(object sender, EventArgs e)
         {
+            var item = (sender as Button).BindingContext as EntregadorListPedidosModel;
+            await DisplayAlert("Aviso", item.id_pedido.ToString(), "Ok");
 
+            string correoCliente, ordenNumero;
+            correoCliente = item.id_cliente.ToString();
+            ordenNumero = item.id_pedido.ToString();
         }
 
         private void btncambiarstatusorden_Clicked(object sender, EventArgs e)
@@ -74,6 +79,11 @@ namespace MargaritasAppClase.Views.EntregadorMenu
         }
 
         private void btnverubiacionorden_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnverperfilcliente_Clicked(object sender, EventArgs e)
         {
 
         }
