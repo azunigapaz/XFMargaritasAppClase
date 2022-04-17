@@ -78,9 +78,9 @@ namespace MargaritasAppClase.Views.EntregadorMenu
 
         }
 
-        private void btnverubiacionorden_Clicked(object sender, EventArgs e)
+        private async void btnverubiacionorden_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new MapaEntregadorPage());
         }
 
         private void btnverperfilcliente_Clicked(object sender, EventArgs e)

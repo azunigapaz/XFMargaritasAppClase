@@ -12,12 +12,40 @@ using Android.Gms.Common;
 using Android.Content;
 using Xamarin.Forms;
 using Plugin.LocalNotification;
+using Android;
 
 namespace MargaritasAppClase.Droid
 {
     [Activity(Label = "MargaritasAppClase", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+
+        const int RequestLocationId = 0;
+
+        readonly string[] LocationPermissions = 
+        {
+            Manifest.Permission.AccessCoarseLocation,
+            Manifest.Permission.AccessFineLocation,
+        };
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            if ((int)Build.VERSION.SdkInt >=23) 
+            {
+                if (CheckSelfPermission(Manifest.Permission.AccessFineLocation) != Permission.Granted)
+                {
+                    RequestPermissions(LocationPermissions, RequestLocationId);
+                }
+
+            } else 
+            {
+                //Permision granted
+            }
+        }
+
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -30,8 +58,8 @@ namespace MargaritasAppClase.Droid
 
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);            
-
+            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.FormsMaps.Init(this, savedInstanceState);
             LoadApplication(new App());
             
         }
