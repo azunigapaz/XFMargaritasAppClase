@@ -214,5 +214,41 @@ namespace MargaritasAppClase.Controller
             return listametodospago;
         }
 
+        public async static Task<List<EntregadorListPedidosModel>> ControllerObtenerListaOrdenesEntregador(string correo)
+        {
+            List<EntregadorListPedidosModel> listaordenesentregador = new List<EntregadorListPedidosModel>();
+
+            using (HttpClient cliente = new HttpClient())
+            {
+                var respuesta = await cliente.GetAsync("https://webfacturacesar.000webhostapp.com/Margarita/methods/orders/?mail="+correo+"&delivery");
+
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    string contenido = respuesta.Content.ReadAsStringAsync().Result.ToString();
+
+                    dynamic dyn = JsonConvert.DeserializeObject(contenido);
+
+                    if (contenido.Length > 28)
+                    {
+                        foreach (var item in dyn.items)
+                        {
+                            listaordenesentregador.Add(new EntregadorListPedidosModel(
+                                            item.id_pedido.ToString(),
+                                            item.id_cliente.ToString(), 
+                                            item.fh_entrega.ToString(),
+                                            item.id_ubicacion.ToString(),
+                                            item.estado.ToString(),
+                                            item.id_entregador.ToString(),
+                                            item.latitudped.ToString(), 
+                                            item.longitudped.ToString()
+                                            ));
+                        }
+                    }
+
+                }
+            }
+            return listaordenesentregador;
+        }
+
     }
 }
