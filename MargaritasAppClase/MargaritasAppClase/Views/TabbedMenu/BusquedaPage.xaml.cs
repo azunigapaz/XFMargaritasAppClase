@@ -56,7 +56,7 @@ namespace MargaritasAppClase.Views.TabbedMenu
             var item = (sender as Button).BindingContext as ClienteListaPedidosModel;
             string correlativo = item.ult_cor_pedido;
 
-            await Navigation.PushAsync(new EvaluacionPage());
+            await Navigation.PushAsync(new EvaluacionPage(correlativo));
         }
 
 

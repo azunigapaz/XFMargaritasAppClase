@@ -47,18 +47,25 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <StackLayout Padding="0" VerticalOptions="End" Margin="0,30,0,0">
+            <StackLayout Padding="0" VerticalOptions="End" Margin="0,10 ,0,0">
                 <StackLayout Orientation="Horizontal" Padding="0" HorizontalOptions="CenterAndExpand">
 
-                    <DatePicker x:Name="dateverfechadeentrega"
-                                WidthRequest="150"
-                                Margin="0,-30,0,0" 
-                                IsEnabled="False" />
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Fecha de Entrega:" TextColor="#000" FontSize="16" FontAttributes="Bold" Margin="5,0,0,20" />
+                        <DatePicker x:Name="dateverfechadeentrega"
+                                    WidthRequest="150"
+                                    Margin="0,-30,0,0" 
+                                    IsEnabled="False" />
+                    </StackLayout>
 
-                    <TimePicker x:Name="timeverhoraentrega"
-                                WidthRequest="150"
-                                Margin="0,-30,0,0" 
-                                IsEnabled="False" />
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Hora de Entrega:" TextColor="#000" FontSize="16" FontAttributes="Bold" Margin="5,0,0,20" />
+                        <TimePicker x:Name="timeverhoraentrega"
+                                    WidthRequest="150"
+                                    Margin="0,-30,0,0" 
+                                    IsEnabled="False" />
+                    </StackLayout>
+                    
 
                 </StackLayout>
 
@@ -68,11 +75,12 @@
                             TextColor="#FFF"
                             BackgroundColor="#000"
                             Margin="30,0,30,0"
+                            IsVisible="False"
                             Clicked="btnescucharaudioreferencia_Clicked"                             
                             />
                 </StackLayout>
 
-                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="0,-5,0,-10">
+                <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Margin="40,0,40,0">
                     <!--<Picker x:Name="selectubicacion"
                             Title="Seleccione una Ubicacion"
                             WidthRequest="300"
@@ -80,21 +88,19 @@
                             IsEnabled="False">
                     </Picker>-->
 
-                    <Label Text="Ubicacion:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
-                    <Label x:Name="lblUbicacion" Text="" TextColor="#000" FontSize="16" FontAttributes="None" HorizontalOptions="EndAndExpand" />                    
-                    
-                    
+                    <Label Text="Ubicacion:             " TextColor="#000" FontSize="16" FontAttributes="Bold" Margin="0,0,0,0" />
+                    <Label x:Name="lblUbicacion" Text="" TextColor="#000" FontSize="16" FontAttributes="None" Margin="0,0,0,20" HorizontalOptions="EndAndExpand" />    
                 </StackLayout>
 
-                <StackLayout Orientation="Horizontal" Margin="50,10,50,5">
+                <StackLayout Orientation="Horizontal" Margin="40,0,40,5">
                     <Label Text="Sub Total:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
                     <Label x:Name="lblsubtotaldetalleorden" Text="L. 00.00" TextColor="#000" FontSize="16" FontAttributes="None" HorizontalOptions="EndAndExpand" />
                 </StackLayout>
-                <StackLayout Orientation="Horizontal" Margin="50,0,50,5">
+                <StackLayout Orientation="Horizontal" Margin="40,0,40,5">
                     <Label Text="ISV:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
                     <Label x:Name="lblisvdetalleorden" Text="L. 00.00" TextColor="#000" FontSize="16" FontAttributes="None" HorizontalOptions="EndAndExpand" />
                 </StackLayout>
-                <StackLayout Orientation="Horizontal" Margin="50,0,50,25">
+                <StackLayout Orientation="Horizontal" Margin="40,0,40,25">
                     <Label Text="Total a Pagar:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
                     <Label x:Name="lbltotalapagardetalleorden" Text="L. 00.00" TextColor="#000" FontSize="16" FontAttributes="None" HorizontalOptions="EndAndExpand" />
                 </StackLayout>

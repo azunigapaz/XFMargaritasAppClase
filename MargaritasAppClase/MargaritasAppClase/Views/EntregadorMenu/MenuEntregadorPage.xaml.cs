@@ -2,6 +2,7 @@
 using MargaritasAppClase.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Plugin.LocalNotification;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -84,9 +85,98 @@ namespace MargaritasAppClase.Views.EntregadorMenu
             //ordenNumero = item.id_pedido.ToString();
         }
 
-        private void btncambiarstatusorden_Clicked(object sender, EventArgs e)
+        private async void btncambiarstatusorden_Clicked(object sender, EventArgs e)
         {
+            var item = (sender as Button).BindingContext as EntregadorListPedidosModel;
+            string orden = item.id_pedido;
+            string cliente = item.id_cliente;
+            var alert = await DisplayAlert("Margaritas App", "Seleccione el estatus de la orden", "Orden Entregada", "En Proceso");
 
+            if(alert)
+            {
+                CambiarStatusOrdenModel save = new CambiarStatusOrdenModel
+                {
+                    ID_Cliente = cliente,
+                    ID_Orden = orden,
+                    ID_Estado = "4"
+                };
+
+                Uri RequestUri = new Uri("https://webfacturacesar.000webhostapp.com/Margarita/methods/cliente/add.php");
+
+                var client = new HttpClient();
+                var json = JsonConvert.SerializeObject(save);
+                var contentJson = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(RequestUri, contentJson);
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    String jsonx = response.Content.ReadAsStringAsync().Result;
+                    JObject jsons = JObject.Parse(jsonx);
+                    String Mensaje = jsons["msg"].ToString();
+                    await DisplayAlert("Success", "Orden " + orden + " Entregada", "Ok");
+                    GetOrdenesRepartidorList();
+
+                    if(cliente == correo) {
+                        var notificacion = new NotificationRequest
+                        {
+                            BadgeNumber = 1,
+                            Title = "Status de Orden",
+                            Description = "Orden " + orden + " entregada, gracias por su preferencia",
+                            ReturningData = "Dummy Data",
+                            NotificationId = 1337,
+
+                        };
+                        await NotificationCenter.Current.Show(notificacion);
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Estamos en mantenimiento", "Ok");
+                }
+            }
+            else
+            {
+                CambiarStatusOrdenModel save = new CambiarStatusOrdenModel
+                {
+                    ID_Cliente = cliente,
+                    ID_Orden = orden,
+                    ID_Estado = "3"
+                };
+
+                Uri RequestUri = new Uri("https://webfacturacesar.000webhostapp.com/Margarita/methods/cliente/add.php");
+
+                var client = new HttpClient();
+                var json = JsonConvert.SerializeObject(save);
+                var contentJson = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(RequestUri, contentJson);
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    String jsonx = response.Content.ReadAsStringAsync().Result;
+                    JObject jsons = JObject.Parse(jsonx);
+                    String Mensaje = jsons["msg"].ToString();
+                    await DisplayAlert("Success", "Orden " + orden + " en Proceso", "Ok");
+                    GetOrdenesRepartidorList();
+
+                    if (cliente == correo)
+                    {
+                        var notificacion = new NotificationRequest
+                        {
+                            BadgeNumber = 1,
+                            Title = "Status de Orden",
+                            Description = "Orden " + orden + " en proceso, favor estar pendiente",
+                            ReturningData = "Dummy Data",
+                            NotificationId = 1337,
+
+                        };
+                        await NotificationCenter.Current.Show(notificacion);
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Estamos en mantenimiento", "Ok");
+                }
+            }
         }
 
         private async void btnverubiacionorden_Clicked(object sender, EventArgs e)

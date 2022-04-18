@@ -85,7 +85,7 @@
                                                 BackgroundColor="#fdd835"
                                                 WidthRequest="50"
                                                 CornerRadius="100"
-                                                IsEnabled="False"
+                                                IsEnabled="True"
                                                 Clicked="btnevaluarservicio_Clicked" />
                                     </StackLayout>
                                 </StackLayout>

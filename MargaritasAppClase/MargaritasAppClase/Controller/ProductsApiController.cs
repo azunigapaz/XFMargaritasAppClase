@@ -252,7 +252,11 @@ namespace MargaritasAppClase.Controller
                                             item.Longitud.ToString(),
                                             item.Direccion.ToString(),
                                             item.LatitudPed.ToString(), 
-                                            item.LongitudPed.ToString()
+                                            item.LongitudPed.ToString(),
+                                            item.Entregador.ToString(),
+                                            item.Telefono.ToString(),
+                                            item.ID_Estado.ToString(),
+                                            item.Estado.ToString()
                                             ));
                         }
                     }
@@ -294,7 +298,11 @@ namespace MargaritasAppClase.Controller
                                             item.Longitud.ToString(),
                                             item.Direccion.ToString(),
                                             item.LatitudPed.ToString(),
-                                            item.LongitudPed.ToString()
+                                            item.LongitudPed.ToString(),
+                                            item.Entregador.ToString(),
+                                            item.Telefono.ToString(),
+                                            item.ID_Estado.ToString(),
+                                            item.Estado.ToString()
                                             ));
                         }
                     }

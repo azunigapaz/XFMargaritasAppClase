@@ -15,7 +15,7 @@
                 </StackLayout>
 
                 <StackLayout Margin="45,0,25,0">
-                    <RadioButton Content="Excelente" IsChecked="true" />
+                    <RadioButton Content="Excelente" />
                     <RadioButton Content="Muy Bueno" />
                     <RadioButton Content="Bueno" />
                     <RadioButton Content="Malo" />
@@ -28,8 +28,8 @@
                 </StackLayout>
 
                 <StackLayout Margin="45,0,25,0">
-                    <RadioButton Content="Excelente" IsChecked="true" />
-                    <RadioButton Content="Muy Bueno" />
+                    <RadioButton Content="Excelente" />
+                    <RadioButton x:Name="muybuenocalentregadorpdos" Content="Muy Bueno" CheckedChanged="muybuenocalentregadorpdos_CheckedChanged" />
                     <RadioButton Content="Bueno" />
                     <RadioButton Content="Malo" />
                     <RadioButton Content="Muy Malo" />
@@ -41,7 +41,7 @@
                 </StackLayout>
 
                 <StackLayout Margin="45,0,25,0">
-                    <RadioButton Content="Excelente" IsChecked="true" />
+                    <RadioButton Content="Excelente" />
                     <RadioButton Content="Muy Bueno" />
                     <RadioButton Content="Bueno" />
                     <RadioButton Content="Malo" />
@@ -54,22 +54,11 @@
                 </StackLayout>
 
                 <StackLayout Margin="45,0,25,0">
-                    <RadioButton Content="Excelente" IsChecked="true" />
+                    <RadioButton Content="Excelente" />
                     <RadioButton Content="Muy Bueno" />
                     <RadioButton Content="Bueno" />
                     <RadioButton Content="Malo" />
                     <RadioButton Content="Muy Malo" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal" Margin="25,35,25,0">
-                    <Label Text="5. " TextColor="#000" FontSize="16" FontAttributes="Bold" />
-                    <Label Text="Para poder seguir mejorando deje un comentario como observación." TextColor="#000" FontSize="16" FontAttributes="Bold" />
-                </StackLayout>
-
-                <StackLayout Orientation="Vertical" Margin="25,0,25,0">
-                    <Editor x:Name="observacionparaevaluacion_input" 
-                           Placeholder="Observaciones"
-                           HeightRequest="100" />
                 </StackLayout>
 
                 <StackLayout BackgroundColor="#FFF" Margin="0,25,0,5">

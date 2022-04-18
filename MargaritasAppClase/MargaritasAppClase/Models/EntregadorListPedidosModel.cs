@@ -21,7 +21,11 @@ namespace MargaritasAppClase.Models
             string longitud,
             string direccion,
             string latitudped, 
-            string longitudped)
+            string longitudped,
+            string Entregador,
+            string Telefono,
+            string ID_Estado,
+            string Estado)
         {
             this.id_pedido = id_pedido;
             this.id_cliente = id_cliente;
@@ -37,6 +41,10 @@ namespace MargaritasAppClase.Models
             this.direccion = direccion;
             this.latitudped = latitudped;
             this.longitudped = longitudped;
+            this.Entregador = Entregador;
+            this.Telefono = Telefono;
+            this.ID_Estado = ID_Estado;
+            this.Estado = Estado;
         }
 
         public string id_pedido { get; set; }
@@ -53,5 +61,9 @@ namespace MargaritasAppClase.Models
         public string direccion { get; set; }
         public string latitudped { get; set; }
         public string longitudped { get; set; }
+        public string Entregador { get; set; }
+        public string Telefono { get; set; }
+        public string ID_Estado { get; set; }
+        public string Estado { get; set; }
     }
 }
