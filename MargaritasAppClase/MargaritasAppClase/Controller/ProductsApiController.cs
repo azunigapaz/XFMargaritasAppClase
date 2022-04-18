@@ -294,7 +294,11 @@ namespace MargaritasAppClase.Controller
                                             item.Longitud.ToString(),
                                             item.Direccion.ToString(),
                                             item.LatitudPed.ToString(),
-                                            item.LongitudPed.ToString()
+                                            item.LongitudPed.ToString(),
+                                            item.Entregador.ToString(),
+                                            item.Telefono.ToString(),
+                                            item.ID_Estado.ToString(),
+                                            item.Estado.ToString()
                                             ));
                         }
                     }
@@ -303,6 +307,49 @@ namespace MargaritasAppClase.Controller
             }
             return listaordenescliente;
         }
+
+
+        public async static Task<List<ClienteListaPedidosDetalleModel>> ControllerObtenerListaOrdenesClienteDetalle(string correo, string corel)
+        {
+            List<ClienteListaPedidosDetalleModel> listaordenesclientedetalle = new List<ClienteListaPedidosDetalleModel>();
+
+            using (HttpClient cliente = new HttpClient())
+            {
+                var respuesta = await cliente.GetAsync("https://webfacturacesar.000webhostapp.com/Margarita/methods/orders/?mail=" + correo + "&corel=" + corel);
+
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    string contenido = respuesta.Content.ReadAsStringAsync().Result.ToString();
+
+                    dynamic dyn = JsonConvert.DeserializeObject(contenido);
+                    byte[] newBytes = null;
+
+                    if (contenido.Length > 28)
+                    {
+                        foreach (var item in dyn.Pedidos)
+                        {
+                            string img64 = item.Foto.ToString();
+                            newBytes = Convert.FromBase64String(img64);
+                            var stream = new MemoryStream(newBytes);
+
+                            listaordenesclientedetalle.Add(new ClienteListaPedidosDetalleModel(
+                                            item.ID_Pedido.ToString(),
+                                            item.ID_Cliente.ToString(),
+                                            item.Ult_Cor_Pedido.ToString(),
+                                            item.Cantidad.ToString(),
+                                            item.Precio.ToString(),
+                                            item.Foto.ToString(),
+                                            item.Descripcion.ToString(),
+                                            ImageSource.FromStream(() => stream)
+                                            ));
+                        }
+                    }
+
+                }
+            }
+            return listaordenesclientedetalle;
+        }
+
 
     }
 }

@@ -36,11 +36,17 @@ namespace MargaritasAppClase.Views.TabbedMenu
 
         private async void btnverdetallepedido_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new DetallePedidoPage());
+            var item = (sender as Button).BindingContext as ClienteListaPedidosModel;
+            string correlativo = item.ult_cor_pedido;
+
+            await Navigation.PushAsync(new DetallePedidoPage(correlativo));
         }
 
         private async void btnevaluarservicio_Clicked(object sender, EventArgs e)
         {
+            var item = (sender as Button).BindingContext as ClienteListaPedidosModel;
+            string correlativo = item.ult_cor_pedido;
+
             await Navigation.PushAsync(new EvaluacionPage());
         }
 
