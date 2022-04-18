@@ -72,10 +72,11 @@ namespace MargaritasAppClase.Views
                         
                         await DisplayAlert("Mensaje", "El codigo de recuperacion fue enviado a tu correo", "Ok");
                         //envia Push Notificacion
+                        
+                        Application.Current.Properties.Remove("correo");
+                        Application.Current.Properties.Remove("tipousuario");
 
                         await Navigation.PushAsync(new Views.LoginPage());
-                        
-
 
                     }
                     else
