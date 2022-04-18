@@ -35,10 +35,10 @@ namespace MargaritasAppClase.Views.EntregadorMenu
         private void Localizacion_PositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
         {
 
-            double Latituda = Convert.ToDouble("15.88555");
+       /*     double Latituda = Convert.ToDouble("15.88555");
             double Longituda = Convert.ToDouble("-88.025441");
             var mapac = new Position(Latituda, Longituda);
-            MapaEntregador.MoveToRegion(new MapSpan(mapac, 2, 2));
+            MapaEntregador.MoveToRegion(new MapSpan(mapac, 2, 2));*/
 
         }
 
@@ -69,7 +69,7 @@ namespace MargaritasAppClase.Views.EntregadorMenu
                 location = await Geolocation.GetLastKnownLocationAsync();
             }
 
-            MapaEntregador.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(lat, lon), Distance.FromMeters(200)));
+            MapaEntregador.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(lat, lon), Distance.FromMeters(2000)));
 
             var localizacion = CrossGeolocator.Current;
 
@@ -85,7 +85,7 @@ namespace MargaritasAppClase.Views.EntregadorMenu
 
                 var posicion = await localizacion.GetPositionAsync();
                 var mapac = new Position(lat, lon);
-                MapaEntregador.MoveToRegion(MapSpan.FromCenterAndRadius(mapac, Distance.FromMeters(200)));
+                MapaEntregador.MoveToRegion(MapSpan.FromCenterAndRadius(mapac, Distance.FromMeters(2000)));
 
             }
             else

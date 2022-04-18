@@ -31,7 +31,7 @@
 
                 <StackLayout Margin="30, 10, 30, 0">
                     <Entry x:Name="nombreactualizarrepartidor_input" 
-                           Text="{Binding Nombre}"
+                           Text="{Binding nombre}"
                            Placeholder="Nombre"
                            TextColor="Black"
                            HorizontalOptions="FillAndExpand"/>
@@ -39,7 +39,7 @@
 
                 <StackLayout Margin="30, 10, 30, 0">
                     <Entry x:Name="apellidoactualizarrepartidor_input"
-                           Text="{Binding Apellido}"
+                           Text="{Binding apellido}"
                            Placeholder="Apellido"
                            TextColor="Black"
                            HorizontalOptions="FillAndExpand"/>
@@ -47,7 +47,7 @@
 
                 <StackLayout Margin="30, 10, 30, 15">
                     <Entry x:Name="telefonoactualizarrepartidor_input" 
-                           Text="{Binding Telefono}"
+                           Text="{Binding telefono}"
                            Placeholder="Teléfono" 
                            Keyboard="Telephone"
                            TextColor="Black"
@@ -64,7 +64,7 @@
                             CornerRadius="10"
                             Margin="0,0,0,10"
                             WidthRequest="200"
-                            Clicked="btntomarphotoactualizadarepartidor_Clicked"/>
+                            Clicked="btnguardarcambiosrepartidor_Clicked"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>
