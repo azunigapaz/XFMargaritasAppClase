@@ -54,26 +54,39 @@
                                         <Label Text="{Binding Estado}" FontSize="14" Margin="0,2" TextColor="Black" />
                                     </StackLayout>
 
-                                    <StackLayout Orientation="Vertical" WidthRequest="200" Margin="0,0,0,8">
-                                        <Button x:Name="btnubicacionpedido" 
-                                                Text="Ubicar Pedido" 
-                                                FontSize="15"
+                                    <StackLayout Orientation="Horizontal" WidthRequest="200" Margin="0,0,0,8">
+                                        <Button x:Name="btnverdetallepedido" 
+                                                Text="&#xf291;" 
+                                                FontSize="20"
+                                                FontFamily="{StaticResource FontAwesomeSolid}"
                                                 TextColor="#FFF"
                                                 FontAttributes="Bold"
                                                 BackgroundColor="#FE5CA6"
-                                                CornerRadius="10"   
-                                                WidthRequest="200"
-                                                Clicked="btnubicacionpedido_Clicked" />
-
-                                        <Button x:Name="btnverdetallepedido" 
-                                                Text="Detalle Pedido" 
-                                                FontSize="15"
+                                                WidthRequest="50"
+                                                CornerRadius="100"
+                                                Clicked="btnverdetallepedido_Clicked" />
+                                        
+                                        <Button x:Name="btnubicacionpedido" 
+                                                Text="&#xf59f;" 
+                                                FontSize="20"
+                                                FontFamily="{StaticResource FontAwesomeSolid}"
                                                 TextColor="#FFF"
                                                 FontAttributes="Bold"
                                                 BackgroundColor="#000"
-                                                CornerRadius="10"   
-                                                WidthRequest="200"
-                                                Clicked="btnverdetallepedido_Clicked" />
+                                                WidthRequest="50"
+                                                CornerRadius="100"
+                                                Clicked="btnubicacionpedido_Clicked" />
+
+                                        <Button x:Name="btnevaluarservicio"
+                                                Text="&#xf46d;"
+                                                FontSize="20"
+                                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                                TextColor="#000"
+                                                BackgroundColor="#fdd835"
+                                                WidthRequest="50"
+                                                CornerRadius="100"
+                                                IsEnabled="False"
+                                                Clicked="btnevaluarservicio_Clicked" />
                                     </StackLayout>
                                 </StackLayout>
                             </StackLayout>
@@ -83,12 +96,7 @@
             </ListView>
 
             <StackLayout BackgroundColor="#FFF">
-                <Button x:Name="btnevaluarservicio"
-                        Text="Evaluar Servicio"
-                        TextColor="#000"
-                        BackgroundColor="#FDD835"
-                        Margin="10,0,10,10" 
-                        Clicked="btnevaluarservicio_Clicked"/>
+                
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
