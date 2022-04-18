@@ -25,6 +25,7 @@ namespace MargaritasAppClase.Views.TabbedMenu
     {
 
         List<CarritoListModel> listacarrito = null;
+        List<UbicacionesListModel> listaubicaciones = null;
 
         public string AudioPath, fileName;
         private readonly AudioRecorderService audioRecorderService = new AudioRecorderService
@@ -304,14 +305,14 @@ namespace MargaritasAppClase.Views.TabbedMenu
                 }
                 else
                 {
-                    await DisplayAlert("Notificación", $"Lista vacía, ingrese datos", "Ok");
+                    await DisplayAlert("Notificación", $"Lista vacía, agregue un item al carrito", "Ok");
                 }
 
                 lblsubtotal.Text = "L. " + subtotal.ToString("#,#.00");
                 lblisv.Text = "L. " + impuesto.ToString("#,#.00");
                 lbltotalapagar.Text = "L. " + total.ToString("#,#.00");
 
-                List<UbicacionesListModel> listaubicaciones = new List<UbicacionesListModel>();
+                listaubicaciones = new List<UbicacionesListModel>();
                 listaubicaciones = await ProductsApiController.ControllerObtenerListaUbicaciones(correo);
 
                 if (listaubicaciones.Count > 0)
@@ -332,7 +333,7 @@ namespace MargaritasAppClase.Views.TabbedMenu
                 }
                 else
                 {
-                    await DisplayAlert("Notificación", $"Lista vacía, ingrese datos", "Ok");
+                    await DisplayAlert("Notificación", $"Lista vacía, agregue una ubicación", "Ok");
                 }
 
                 sl.IsVisible = false;
@@ -374,33 +375,40 @@ namespace MargaritasAppClase.Views.TabbedMenu
         {
             if (listacarrito.Count > 0)
             {
-                if (Convert.ToInt32(timehoraentrega.Time.ToString("hh")) < Convert.ToInt32(DateTime.Now.ToString("hh"))+1)
+                if(listaubicaciones.Count > 0)
                 {
-                    await DisplayAlert("Aviso", $"Su orden debe tener minimo 1 hora de anticipacion", "Ok");
-                }
-                else
-                {
-                    string audio, pathBase64Audio;
-                    if (String.IsNullOrEmpty(AudioPath))
+                    if (Convert.ToInt32(timehoraentrega.Time.ToString("hh")) < Convert.ToInt32(DateTime.Now.ToString("hh")) + 1)
                     {
-                        pathBase64Audio = "";
+                        await DisplayAlert("Aviso", $"Su orden debe tener minimo 1 hora de anticipacion", "Ok");
                     }
                     else
                     {
-                        //extraer el path del audio
-                        audio = AudioPath;
-                        //convertir a arreglo de bytes
-                        byte[] fileByte = System.IO.File.ReadAllBytes(audio);
-                        //convertir el audio a base64
-                        pathBase64Audio = Convert.ToBase64String(fileByte);
-                    }
+                        string audio, pathBase64Audio;
+                        if (String.IsNullOrEmpty(AudioPath))
+                        {
+                            pathBase64Audio = "";
+                        }
+                        else
+                        {
+                            //extraer el path del audio
+                            audio = AudioPath;
+                            //convertir a arreglo de bytes
+                            byte[] fileByte = System.IO.File.ReadAllBytes(audio);
+                            //convertir el audio a base64
+                            pathBase64Audio = Convert.ToBase64String(fileByte);
+                        }
 
-                    await Navigation.PushAsync(new PagoOrdenPage(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), datefechadeentrega.Date.ToString("yyyy/MM/dd") + " " + timehoraentrega.Time.ToString(), ubicacionId, pathBase64Audio, listacarrito, lbltotalapagar.Text));
+                        await Navigation.PushAsync(new PagoOrdenPage(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), datefechadeentrega.Date.ToString("yyyy/MM/dd") + " " + timehoraentrega.Time.ToString(), ubicacionId, pathBase64Audio, listacarrito, lbltotalapagar.Text));
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Notificación", $"Lista vacía, agregue una ubicación", "Ok");
                 }
             }
             else
             {
-                await DisplayAlert("Notificación", $"Lista vacía, ingrese datos", "Ok");
+                await DisplayAlert("Notificación", $"Lista vacía, agregue un item al carrito", "Ok");
             }
 
         }
