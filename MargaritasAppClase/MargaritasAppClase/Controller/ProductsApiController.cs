@@ -313,41 +313,49 @@ namespace MargaritasAppClase.Controller
         {
             List<ClienteListaPedidosDetalleModel> listaordenesclientedetalle = new List<ClienteListaPedidosDetalleModel>();
 
-            using (HttpClient cliente = new HttpClient())
-            {
-                var respuesta = await cliente.GetAsync("https://webfacturacesar.000webhostapp.com/Margarita/methods/orders/?mail=" + correo + "&corel=" + corel);
+            try
+            {               
 
-                if (respuesta.IsSuccessStatusCode)
+                using (HttpClient cliente = new HttpClient())
                 {
-                    string contenido = respuesta.Content.ReadAsStringAsync().Result.ToString();
+                    var respuesta = await cliente.GetAsync("https://webfacturacesar.000webhostapp.com/Margarita/methods/orders/?mail=" + correo + "&corel=" + corel);
 
-                    dynamic dyn = JsonConvert.DeserializeObject(contenido);
-                    byte[] newBytes = null;
-
-                    if (contenido.Length > 28)
+                    if (respuesta.IsSuccessStatusCode)
                     {
-                        foreach (var item in dyn.Pedidos)
+                        string contenido = respuesta.Content.ReadAsStringAsync().Result.ToString();
+
+                        dynamic dyn = JsonConvert.DeserializeObject(contenido);
+                        byte[] newBytes = null;
+
+                        if (contenido.Length > 28)
                         {
-                            string img64 = item.Foto.ToString();
-                            newBytes = Convert.FromBase64String(img64);
-                            var stream = new MemoryStream(newBytes);
+                            foreach (var item in dyn.Pedidos)
+                            {
+                                string img64 = item.Foto.ToString();
+                                newBytes = Convert.FromBase64String(img64);
+                                var stream = new MemoryStream(newBytes);
 
-                            listaordenesclientedetalle.Add(new ClienteListaPedidosDetalleModel(
-                                            item.ID_Pedido.ToString(),
-                                            item.ID_Cliente.ToString(),
-                                            item.Ult_Cor_Pedido.ToString(),
-                                            item.Cantidad.ToString(),
-                                            item.Precio.ToString(),
-                                            item.Foto.ToString(),
-                                            item.Descripcion.ToString(),
-                                            ImageSource.FromStream(() => stream)
-                                            ));
+                                listaordenesclientedetalle.Add(new ClienteListaPedidosDetalleModel(
+                                                item.ID_Pedido.ToString(),
+                                                item.ID_Cliente.ToString(),
+                                                item.Ult_Cor_Pedido.ToString(),
+                                                item.Cantidad.ToString(),
+                                                item.Precio.ToString(),
+                                                item.Foto.ToString(),
+                                                item.Descripcion.ToString(),
+                                                ImageSource.FromStream(() => stream)
+                                                ));
+                            }
                         }
-                    }
 
+                    }
                 }
+                return listaordenesclientedetalle;
             }
-            return listaordenesclientedetalle;
+            catch(Exception ex)
+            {
+                return listaordenesclientedetalle;
+            }
         }
 
 

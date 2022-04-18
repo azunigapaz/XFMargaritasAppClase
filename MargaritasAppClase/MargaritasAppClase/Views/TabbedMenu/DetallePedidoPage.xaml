@@ -68,16 +68,22 @@
                             TextColor="#FFF"
                             BackgroundColor="#000"
                             Margin="30,0,30,0"
-                            Clicked="btnescucharaudioreferencia_Clicked" />
+                            Clicked="btnescucharaudioreferencia_Clicked"                             
+                            />
                 </StackLayout>
 
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,-5,0,-10">
-                    <Picker x:Name="selectubicacion"
+                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="0,-5,0,-10">
+                    <!--<Picker x:Name="selectubicacion"
                             Title="Seleccione una Ubicacion"
                             WidthRequest="300"
                             Margin="8,0,0,0"
                             IsEnabled="False">
-                    </Picker>
+                    </Picker>-->
+
+                    <Label Text="Ubicacion:" TextColor="#000" FontSize="16" FontAttributes="Bold" />
+                    <Label x:Name="lblUbicacion" Text="" TextColor="#000" FontSize="16" FontAttributes="None" HorizontalOptions="EndAndExpand" />                    
+                    
+                    
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Margin="50,10,50,5">

@@ -44,8 +44,11 @@ namespace MargaritasAppClase.Views.TabbedMenu
         {
             var item = (sender as Button).BindingContext as ClienteListaPedidosModel;
             string correlativo = item.ult_cor_pedido;
+            string fecha = item.fh_entrega;            
+            string audio = item.audio;
+            string direccion = item.direccion;
 
-            await Navigation.PushAsync(new DetallePedidoPage(correlativo));
+            await Navigation.PushAsync(new DetallePedidoPage(correlativo,fecha,direccion,audio));
         }
 
         private async void btnevaluarservicio_Clicked(object sender, EventArgs e)
