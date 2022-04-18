@@ -22,15 +22,114 @@ namespace MargaritasAppClase.Views.TabbedMenu
         string correl;
         int nota1 = 0, nota2 = 0, nota3 = 0, nota4 = 0;
 
-        private void muybuenocalentregadorpdos_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            nota2 = 4;
-        }
-
         public EvaluacionPage(string correl)
         {
             InitializeComponent();
             this.correl = correl;
+        }
+
+        /* Pregunta 1 */
+        private void rb_excelentepreguntauno_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota1 = 5;
+        }
+
+        private void rb_muybuenopreguntauno_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota1 = 4;
+        }
+
+        private void rb_buenopreguntauno_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota1 = 3;
+        }
+
+        private void rb_malopreguntauno_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota1 = 2;
+        }
+
+        private void rb_muymalopreguntauno_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota1 = 1;
+        }
+
+        /* Pregunta 2 */
+        private void rb_excelentepreguntados_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota2 = 5;
+        }
+
+        private void rb_muybuenopreguntados_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota2 = 4;
+        }
+
+        private void rb_buenopreguntados_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota2 = 3;
+        }
+
+        private void rb_malopreguntados_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota2 = 2;
+        }
+
+        private void rb_muymalopreguntados_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota2 = 1;
+        }
+
+        /* Pregunta 3 */
+        private void rb_excelentepreguntautres_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota3 = 5;
+        }
+
+        private void rb_muybuenopreguntatres_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota3 = 4;
+        }
+
+        private void rb_buenopreguntatres_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota3 = 3;
+        }
+
+        private void rb_malopreguntatres_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota3 = 2;
+        }
+
+        private void rb_muymalopreguntatres_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota3 = 1;
+        }
+
+        /* Pregunta 4 */
+        private void rb_excelentepreguntacuatro_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota4 = 5;
+        }
+
+        private void rb_muybuenopreguntacuatro_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota4 = 4;
+        }
+
+        private void rb_buenopreguntacuatro_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota4 = 3;
+        }
+
+        private void rb_malopreguntacuatro_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota4 = 2;
+        }
+
+        private void rb_muymalopreguntacuatro_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            nota4 = 1;
         }
 
         private async void btnenviarevaluacion_Clicked(object sender, EventArgs e)

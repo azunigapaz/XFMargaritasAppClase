@@ -15,11 +15,11 @@
                 </StackLayout>
 
                 <StackLayout Margin="45,0,25,0">
-                    <RadioButton Content="Excelente" />
-                    <RadioButton Content="Muy Bueno" />
-                    <RadioButton Content="Bueno" />
-                    <RadioButton Content="Malo" />
-                    <RadioButton Content="Muy Malo" />
+                    <RadioButton x:Name="rb_excelentepreguntauno" Content="Excelente" CheckedChanged="rb_excelentepreguntauno_CheckedChanged" />
+                    <RadioButton x:Name="rb_muybuenopreguntauno" Content="Muy Bueno" CheckedChanged="rb_muybuenopreguntauno_CheckedChanged" />
+                    <RadioButton x:Name="rb_buenopreguntauno" Content="Bueno" CheckedChanged="rb_buenopreguntauno_CheckedChanged" />
+                    <RadioButton x:Name="rb_malopreguntauno" Content="Malo" CheckedChanged="rb_malopreguntauno_CheckedChanged" />
+                    <RadioButton x:Name="rb_muymalopreguntauno" Content="Muy Malo" CheckedChanged="rb_muymalopreguntauno_CheckedChanged" />
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Margin="25,35,25,0">
@@ -28,11 +28,11 @@
                 </StackLayout>
 
                 <StackLayout Margin="45,0,25,0">
-                    <RadioButton Content="Excelente" />
-                    <RadioButton x:Name="muybuenocalentregadorpdos" Content="Muy Bueno" CheckedChanged="muybuenocalentregadorpdos_CheckedChanged" />
-                    <RadioButton Content="Bueno" />
-                    <RadioButton Content="Malo" />
-                    <RadioButton Content="Muy Malo" />
+                    <RadioButton x:Name="rb_excelentepreguntados" Content="Excelente" CheckedChanged="rb_excelentepreguntados_CheckedChanged" />
+                    <RadioButton x:Name="rb_muybuenopreguntados" Content="Muy Bueno" CheckedChanged="rb_muybuenopreguntados_CheckedChanged" />
+                    <RadioButton x:Name="rb_buenopreguntados" Content="Bueno" CheckedChanged="rb_buenopreguntados_CheckedChanged" />
+                    <RadioButton x:Name="rb_malopreguntados" Content="Malo" CheckedChanged="rb_malopreguntados_CheckedChanged" />
+                    <RadioButton x:Name="rb_muymalopreguntados" Content="Muy Malo" CheckedChanged="rb_muymalopreguntados_CheckedChanged" />
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Margin="25,35,25,0">
@@ -41,11 +41,11 @@
                 </StackLayout>
 
                 <StackLayout Margin="45,0,25,0">
-                    <RadioButton Content="Excelente" />
-                    <RadioButton Content="Muy Bueno" />
-                    <RadioButton Content="Bueno" />
-                    <RadioButton Content="Malo" />
-                    <RadioButton Content="Muy Malo" />
+                    <RadioButton x:Name="rb_excelentepreguntautres" Content="Excelente" CheckedChanged="rb_excelentepreguntautres_CheckedChanged" />
+                    <RadioButton x:Name="rb_muybuenopreguntatres" Content="Muy Bueno" CheckedChanged="rb_muybuenopreguntatres_CheckedChanged" />
+                    <RadioButton x:Name="rb_buenopreguntatres" Content="Bueno" CheckedChanged="rb_buenopreguntatres_CheckedChanged" />
+                    <RadioButton x:Name="rb_malopreguntatres" Content="Malo" CheckedChanged="rb_malopreguntatres_CheckedChanged"/>
+                    <RadioButton x:Name="rb_muymalopreguntatres" Content="Muy Malo" CheckedChanged="rb_muymalopreguntatres_CheckedChanged" />
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Margin="25,35,25,0">
@@ -54,11 +54,11 @@
                 </StackLayout>
 
                 <StackLayout Margin="45,0,25,0">
-                    <RadioButton Content="Excelente" />
-                    <RadioButton Content="Muy Bueno" />
-                    <RadioButton Content="Bueno" />
-                    <RadioButton Content="Malo" />
-                    <RadioButton Content="Muy Malo" />
+                    <RadioButton x:Name="rb_excelentepreguntacuatro" Content="Excelente" CheckedChanged="rb_excelentepreguntacuatro_CheckedChanged" />
+                    <RadioButton x:Name="rb_muybuenopreguntacuatro" Content="Muy Bueno" CheckedChanged="rb_muybuenopreguntacuatro_CheckedChanged" />
+                    <RadioButton x:Name="rb_buenopreguntacuatro" Content="Bueno" CheckedChanged="rb_buenopreguntacuatro_CheckedChanged" />
+                    <RadioButton x:Name="rb_malopreguntacuatro" Content="Malo" CheckedChanged="rb_malopreguntacuatro_CheckedChanged" />
+                    <RadioButton x:Name="rb_muymalopreguntacuatro" Content="Muy Malo" CheckedChanged="rb_muymalopreguntacuatro_CheckedChanged" />
                 </StackLayout>
 
                 <StackLayout BackgroundColor="#FFF" Margin="0,25,0,5">
