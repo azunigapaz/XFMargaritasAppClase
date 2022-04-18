@@ -29,9 +29,15 @@ namespace MargaritasAppClase.Views.TabbedMenu
             GetOrdenesClienteList();
         }
 
-        private void btnubicacionpedido_Clicked(object sender, EventArgs e)
+        private async void btnubicacionpedido_Clicked(object sender, EventArgs e)
         {
+            var item = (sender as Button).BindingContext as ClienteListaPedidosModel;
+            double lat = Convert.ToDouble(item.latitud.ToString());
+            double lon = Convert.ToDouble(item.longitud.ToString());
+            double latped = Convert.ToDouble(item.latitudped.ToString());
+            double lonped = Convert.ToDouble(item.longitudped.ToString());
 
+            await Navigation.PushAsync(new MapaSeguirPedidoPage(lat, lon, latped, lonped));
         }
 
         private async void btnverdetallepedido_Clicked(object sender, EventArgs e)
