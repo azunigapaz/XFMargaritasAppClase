@@ -98,7 +98,7 @@ namespace MargaritasAppClase.Views
                         FechaCrea = "0",
                         Telefono = telefonoregistro_input.Text,
                         Foto = pathBase64Imagen,
-                        Estado = "1",
+                        Estado = "0",
                         TipoUsuario = "1",
                     };
 

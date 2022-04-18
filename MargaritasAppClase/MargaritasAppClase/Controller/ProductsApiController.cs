@@ -262,6 +262,48 @@ namespace MargaritasAppClase.Controller
             return listaordenesentregador;
         }
 
+        public async static Task<List<EntregadorListPedidosModel>> ControllerObtenerListaOrdenesEntregadas(string correo)
+        {
+            List<EntregadorListPedidosModel> listaordenesentregador = new List<EntregadorListPedidosModel>();
+
+            using (HttpClient cliente = new HttpClient())
+            {
+                var respuesta = await cliente.GetAsync("https://webfacturacesar.000webhostapp.com/Margarita/methods/orders/?mail=" + correo + "&delivery");
+
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    string contenido = respuesta.Content.ReadAsStringAsync().Result.ToString();
+
+                    dynamic dyn = JsonConvert.DeserializeObject(contenido);
+
+                    if (contenido.Length > 28)
+                    {
+                        foreach (var item in dyn.Pedidos)
+                        {
+                            listaordenesentregador.Add(new EntregadorListPedidosModel(
+                                            item.ID_Pedido.ToString(),
+                                            item.ID_Cliente.ToString(),
+                                            item.Ult_Cor_Pedido.ToString(),
+                                            item.FH_Pedido.ToString(),
+                                            item.FH_Entrega.ToString(),
+                                            item.Comentarios.ToString(),
+                                            item.Audio.ToString(),
+                                            item.TipoPago.ToString(),
+                                            item.TipoEntrega.ToString(),
+                                            item.Latitud.ToString(),
+                                            item.Longitud.ToString(),
+                                            item.Direccion.ToString(),
+                                            item.LatitudPed.ToString(),
+                                            item.LongitudPed.ToString()
+                                            ));
+                        }
+                    }
+
+                }
+            }
+            return listaordenesentregador;
+        }
+
         public async static Task<List<ClienteListaPedidosModel>> ControllerObtenerListaOrdenesCliente(string correo)
         {
             List<ClienteListaPedidosModel> listaordenescliente = new List<ClienteListaPedidosModel>();
