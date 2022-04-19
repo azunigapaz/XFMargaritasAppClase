@@ -183,6 +183,8 @@ namespace MargaritasAppClase.Views
                         imageToSave = null;
                         registroimg.Source = null;
                         nombreregistro_input.Focus();
+
+                        await Navigation.PopAsync();
                     }
                     
                     else
