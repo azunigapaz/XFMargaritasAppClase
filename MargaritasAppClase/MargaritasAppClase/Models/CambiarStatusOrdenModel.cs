@@ -6,8 +6,9 @@ namespace MargaritasAppClase.Models
 {
     public class CambiarStatusOrdenModel
     {
-        public string ID_Orden { get; set; }
+        public string Action { get; set; }
         public string ID_Cliente { get; set; }
-        public string ID_Estado { get; set; }
+        public string Correl { get; set; }        
+        public string Estado { get; set; }
      }
 }

@@ -43,7 +43,7 @@ namespace MargaritasAppClase.Views.EntregadorMenu
                     spinner_historialpedidoscompletadosentregador.IsRunning = true;
 
                     listaordenesentregadas = new List<EntregadorListPedidosModel>();
-                    listaordenesentregadas = await ProductsApiController.ControllerObtenerListaOrdenesEntregador(correo);
+                    listaordenesentregadas = await ProductsApiController.ControllerObtenerListaOrdenesEntregadas(correo);
 
                     if (listaordenesentregadas.Count > 0)
                     {

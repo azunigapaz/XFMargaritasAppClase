@@ -53,7 +53,7 @@ namespace MargaritasAppClase.Views.TabbedMenu
             GetCarritoList();
             datefechadeentrega.MinimumDate = new DateTime(Convert.ToInt32(DateTime.Now.ToString("yyyy")), Convert.ToInt32(DateTime.Now.ToString("MM")), Convert.ToInt32(DateTime.Now.ToString("dd")));
             datefechadeentrega.MaximumDate = new DateTime(Convert.ToInt32(DateTime.Now.ToString("yyyy")) + 1, 1, 31);
-            timehoraentrega.Time = new TimeSpan(Convert.ToInt32(DateTime.Now.ToString("HH"))+1, Convert.ToInt32(DateTime.Now.ToString("mm")), Convert.ToInt32(DateTime.Now.ToString("ss")));
+            timehoraentrega.Time = new TimeSpan(Convert.ToInt32(DateTime.Now.ToString("HH")), Convert.ToInt32(DateTime.Now.ToString("mm")), Convert.ToInt32(DateTime.Now.ToString("ss")));
         }
 
         private async void btnagregarproductocarrito_Clicked(object sender, EventArgs e)

@@ -6,6 +6,7 @@ namespace MargaritasAppClase.Models
 {
     public class SaveEvaluacionModel
     {
+        public string Action { get; set; }
         public string ID_Cliente { get; set; }
         public string Correl { get; set; }
         public string Calif1 { get; set; }

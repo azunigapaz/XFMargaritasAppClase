@@ -55,8 +55,17 @@ namespace MargaritasAppClase.Views.TabbedMenu
         {
             var item = (sender as Button).BindingContext as ClienteListaPedidosModel;
             string correlativo = item.ult_cor_pedido;
+            string estado = item.ID_Estado;
 
-            await Navigation.PushAsync(new EvaluacionPage(correlativo));
+            if(estado == "4")
+            {
+                await Navigation.PushAsync(new EvaluacionPage(correlativo));
+            }
+            else
+            {
+                await DisplayAlert("Aviso", "Solo se puede valorar las ordenes entregadas", "Ok");
+            }
+            
         }
 
 

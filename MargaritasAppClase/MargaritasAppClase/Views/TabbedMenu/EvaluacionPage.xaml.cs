@@ -138,6 +138,7 @@ namespace MargaritasAppClase.Views.TabbedMenu
             {
                 SaveEvaluacionModel save = new SaveEvaluacionModel
                 {
+                    Action = "cal",
                     ID_Cliente = correo,
                     Correl = correl,
                     Calif1 = nota1.ToString(),
@@ -159,6 +160,7 @@ namespace MargaritasAppClase.Views.TabbedMenu
                     JObject jsons = JObject.Parse(jsonx);
                     String Mensaje = jsons["msg"].ToString();
                     await DisplayAlert("Success", "Formulario Enviado", "Ok");
+                    await Navigation.PopAsync();
                 }
                 else
                 {

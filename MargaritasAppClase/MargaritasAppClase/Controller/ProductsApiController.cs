@@ -272,7 +272,7 @@ namespace MargaritasAppClase.Controller
 
             using (HttpClient cliente = new HttpClient())
             {
-                var respuesta = await cliente.GetAsync("https://webfacturacesar.000webhostapp.com/Margarita/methods/orders/?mail=" + correo + "&delivery");
+                var respuesta = await cliente.GetAsync("https://webfacturacesar.000webhostapp.com/Margarita/methods/orders/?mail=" + correo + "&delivery&hist=1");
 
                 if (respuesta.IsSuccessStatusCode)
                 {
