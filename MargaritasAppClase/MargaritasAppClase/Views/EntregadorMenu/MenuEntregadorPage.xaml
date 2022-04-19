@@ -83,7 +83,6 @@
                                                     BackgroundColor="#fe5ca6"
                                                     WidthRequest="50"
                                                     CornerRadius="100"
-                                                    IsEnabled="False"
                                                     Clicked="btnverorden_Clicked"/>
 
                                             <Button x:Name="btnverubiacionorden" 
