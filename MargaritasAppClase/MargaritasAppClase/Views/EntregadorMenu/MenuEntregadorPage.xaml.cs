@@ -130,7 +130,7 @@ namespace MargaritasAppClase.Views.EntregadorMenu
                         {
                             BadgeNumber = 1,
                             Title = "Status de Orden",
-                            Description = "Orden " + orden + " entregada, gracias por su preferencia",
+                            Description = "Orden " + orden + " entregada, solicitar valoración",
                             ReturningData = "Dummy Data",
                             NotificationId = 1337,
 
@@ -179,7 +179,7 @@ namespace MargaritasAppClase.Views.EntregadorMenu
                         {
                             BadgeNumber = 1,
                             Title = "Status de Orden",
-                            Description = "Orden " + orden + " en proceso, favor estar pendiente",
+                            Description = "Orden " + orden + " en proceso, favor llegar a tiempo",
                             ReturningData = "Dummy Data",
                             NotificationId = 1337,
 

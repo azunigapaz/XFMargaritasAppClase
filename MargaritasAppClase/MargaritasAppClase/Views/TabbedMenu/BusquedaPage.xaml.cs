@@ -1,8 +1,13 @@
 ﻿using MargaritasAppClase.Controller;
 using MargaritasAppClase.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Plugin.LocalNotification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -71,7 +76,6 @@ namespace MargaritasAppClase.Views.TabbedMenu
 
         private async void GetOrdenesClienteList()
         {
-
             try
             {
                 var AccesoInternet = Connectivity.NetworkAccess;
@@ -84,10 +88,101 @@ namespace MargaritasAppClase.Views.TabbedMenu
                     listaordenescliente = new List<ClienteListaPedidosModel>();
                     listaordenescliente = await ProductsApiController.ControllerObtenerListaOrdenesCliente(correo);
 
+                    string vestado = "", vnotiproceso = "", vnotientregado = "", vcorrelativo = "", vorden = "";
+
                     if (listaordenescliente.Count > 0)
                     {
                         listview_historialpedidos.ItemsSource = null;
                         listview_historialpedidos.ItemsSource = listaordenescliente;
+
+                        foreach (var v in listaordenescliente)
+                        {                            
+                            vestado = v.ID_Estado;
+                            vnotiproceso = v.NotiProceso;
+                            vnotientregado = v.NotiEntregado;
+                            vcorrelativo = v.ult_cor_pedido;
+                            vorden = v.id_pedido;
+
+                            if(vestado == "3")
+                            {
+                                if (vnotiproceso == "0")
+                                {
+                                    var notificacion = new NotificationRequest
+                                    {
+                                        BadgeNumber = 1,
+                                        Title = "Status de Orden",
+                                        Description = "Orden " + vorden + " en camino, por favor estar pendiente",
+                                        ReturningData = "Dummy Data",
+                                        NotificationId = 1337,
+                                    };
+                                    await NotificationCenter.Current.Show(notificacion);
+
+                                    // cambiamos la bandera de notificacion proceso
+                                    CambiarBanderaOrdenesNotificacionModel save = new CambiarBanderaOrdenesNotificacionModel
+                                    {
+                                        Action = "not",
+                                        ID_Cliente = correo,
+                                        Correl = vcorrelativo,
+                                        Nproceso = "1",
+                                        Npedido = "0"
+                                    };
+
+                                    Uri RequestUri = new Uri("https://webfacturacesar.000webhostapp.com/Margarita/methods/orders/");
+
+                                    var client = new HttpClient();
+                                    var json = JsonConvert.SerializeObject(save);
+                                    var contentJson = new StringContent(json, Encoding.UTF8, "application/json");
+                                    var response = await client.PostAsync(RequestUri, contentJson);
+
+                                    if (response.StatusCode == HttpStatusCode.OK)
+                                    {
+                                        String jsonx = response.Content.ReadAsStringAsync().Result;
+                                        JObject jsons = JObject.Parse(jsonx);
+                                        String Mensaje = jsons["msg"].ToString();                                        
+                                    }
+                                }
+                            }
+                            else if (vestado == "4")
+                            {
+                                if (vnotientregado == "0")
+                                {
+                                    var notificacion = new NotificationRequest
+                                    {
+                                        BadgeNumber = 1,
+                                        Title = "Status de Orden",
+                                        Description = "Orden " + vorden + " entregada, gracias por su preferencia",
+                                        ReturningData = "Dummy Data",
+                                        NotificationId = 1337,
+                                    };
+                                    await NotificationCenter.Current.Show(notificacion);
+
+                                    // cambiamos la bandera de notificacion proceso
+                                    CambiarBanderaOrdenesNotificacionModel save = new CambiarBanderaOrdenesNotificacionModel
+                                    {
+                                        Action = "not",
+                                        ID_Cliente = correo,
+                                        Correl = vcorrelativo,
+                                        Nproceso = "1",
+                                        Npedido = "1"
+                                    };
+
+                                    Uri RequestUri = new Uri("https://webfacturacesar.000webhostapp.com/Margarita/methods/orders/");
+
+                                    var client = new HttpClient();
+                                    var json = JsonConvert.SerializeObject(save);
+                                    var contentJson = new StringContent(json, Encoding.UTF8, "application/json");
+                                    var response = await client.PostAsync(RequestUri, contentJson);
+
+                                    if (response.StatusCode == HttpStatusCode.OK)
+                                    {
+                                        String jsonx = response.Content.ReadAsStringAsync().Result;
+                                        JObject jsons = JObject.Parse(jsonx);
+                                        String Mensaje = jsons["msg"].ToString();
+                                    }
+                                }
+                            }
+
+                        }
                     }
                     else
                     {

@@ -348,7 +348,9 @@ namespace MargaritasAppClase.Controller
                                             item.Entregador.ToString(),
                                             item.Telefono.ToString(),
                                             item.ID_Estado.ToString(),
-                                            item.Estado.ToString()
+                                            item.Estado.ToString(),
+                                            item.NotiProceso.ToString(),
+                                            item.NotiEntregado.ToString()
                                             ));
                         }
                     }

@@ -6,7 +6,7 @@ namespace MargaritasAppClase.Models
 {
     public class ClienteListaPedidosModel
     {
-        public ClienteListaPedidosModel(string id_pedido,string id_cliente,string ult_cor_pedido,string fh_pedido,string fh_entrega,string comentarios,string audio,string tipopago,string tipoentrega,string latitud,string longitud,string direccion,string latitudped,string longitudped, string Entregador, string Telefono, string ID_Estado, string Estado)
+        public ClienteListaPedidosModel(string id_pedido,string id_cliente,string ult_cor_pedido,string fh_pedido,string fh_entrega,string comentarios,string audio,string tipopago,string tipoentrega,string latitud,string longitud,string direccion,string latitudped,string longitudped, string Entregador, string Telefono, string ID_Estado, string Estado, string NotiProceso, string NotiEntregado)
         {
             this.id_pedido = id_pedido;
             this.id_cliente = id_cliente;
@@ -26,6 +26,8 @@ namespace MargaritasAppClase.Models
             this.Telefono = Telefono;
             this.ID_Estado = ID_Estado;
             this.Estado = Estado;
+            this.NotiProceso = NotiProceso;
+            this.NotiEntregado = NotiEntregado;
         }
 
         public string id_pedido { get; set; }
@@ -46,6 +48,8 @@ namespace MargaritasAppClase.Models
         public string Telefono { get; set; }
         public string ID_Estado { get; set; }
         public string Estado { get; set; }
+        public string NotiProceso { get; set; }
+        public string NotiEntregado { get; set; }
 
     }
 }
